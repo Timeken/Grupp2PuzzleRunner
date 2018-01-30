@@ -7,10 +7,12 @@ public class ChooseKey : MonoBehaviour {
     [SerializeField]
     GameObject[] keys;
     GameObject CorrectKey;
-    Material selectMaterial;
     int arraySelection;
 
-	void Start () {
+    bool navigationCheck;
+    float navigationTimer;
+
+    void Start () {
         CorrectKey = keys[Random.Range(0, keys.Length)];
         arraySelection = 0;
 	}
@@ -26,20 +28,18 @@ public class ChooseKey : MonoBehaviour {
 
     void Navigation()
     {
-        bool navigationCheck = true;
-        float navigationTimer = 0;
 
-        if (Input.GetAxis("LeftJoystickVertical") >= 0.2)
+        if (Input.GetAxis("LeftJoystickHorizontal") >= 0.2)
         {
-            Debug.Log("vertical");
+            Debug.Log("Horizontal");
             if (navigationCheck == true)
             {
                 navigationCheck = false;
                 navigationTimer = Time.time + 1f;
                 if (arraySelection < keys.Length - 1)
                 {
-                    arraySelection++;
-                    selectMaterial.color = Color.gray;                    
+                    Debug.Log(arraySelection);
+                    arraySelection++;            
                 }
             }            
             if (Time.time > navigationTimer)
@@ -48,24 +48,24 @@ public class ChooseKey : MonoBehaviour {
             }
         }
 
-        if (Input.GetAxis("LeftJoystickVertical") <= -0.2)
+        if (Input.GetAxis("LeftJoystickHorizontal") <= -0.2)
         {
-            Debug.Log("vertical");
+            Debug.Log("Horizontal");
             if (navigationCheck == true)
             {
                 navigationCheck = false;
                 navigationTimer = Time.time + 1f;
                 if (arraySelection > 0)
                 {
+                    Debug.Log(arraySelection);
                     arraySelection--;
-                    selectMaterial.color = Color.gray;
                 }
             }
             if (Time.time > navigationTimer)
             {
                 navigationCheck = true;
             }
-        }               
+        }
     }
 
     void ButtonPress()
@@ -77,12 +77,12 @@ public class ChooseKey : MonoBehaviour {
             {
                 Debug.Log("Right key");
             }
-            else
+            else if (!Input.GetButtonDown("aButton") == CorrectKey)
             {
-                Debug.Log("Wrong key bruh");
+                Debug.Log("Wrong Key");
             }
         }
-        else
+        else if (!Input.GetButtonDown("aButton"))
         {
             Debug.Log("Cannot press that");
         }
