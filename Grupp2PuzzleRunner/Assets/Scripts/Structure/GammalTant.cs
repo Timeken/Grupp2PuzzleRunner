@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GammalTant : Shortcut {
 
-	protected override void StartShortcut(GameObject player)
+	protected override void StartShortcut(int playerNumber)
     {
         Debug.Log("Starting shortcut...");
     }

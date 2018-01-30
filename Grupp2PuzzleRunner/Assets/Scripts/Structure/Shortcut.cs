@@ -6,25 +6,23 @@ public abstract class Shortcut : Interactable {
 
     [SerializeField]
     private float minDistanceBehind;
-    private GameObject[] players;
 
-	protected override void Activate(GameObject player)
+	protected override void Activate(int playerNumber)
     {
-        if (!InTheLead(player) && DistanceBetweenPlayers() > minDistanceBehind)
+        if (!InTheLead(playerNumber) && DistanceBetweenPlayers() > minDistanceBehind)
         {
-            StartShortcut(player);
+            StartShortcut(playerNumber);
         }
     }
-    private bool InTheLead(GameObject player)
+    private bool InTheLead(int playerNumber)
     {
         GameObject otherPlayer = new GameObject();
-        players = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < players.Length; i++)
         {
-            if (players[i] != player)
+            if (i != playerNumber)
                 otherPlayer = players[i];
         }
-        if (player.transform.position.x > otherPlayer.transform.position.x)
+        if (players[playerNumber].transform.position.x > otherPlayer.transform.position.x)
         {
             return true;
         }
@@ -34,5 +32,5 @@ public abstract class Shortcut : Interactable {
     {
         return Vector2.Distance(players[0].transform.position, players[1].transform.position);
     }
-    protected abstract void StartShortcut(GameObject player);
+    protected abstract void StartShortcut(int playerNumber);
 }

@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class CountingSheep : Puzzle {
 
-	protected override void StartPuzzle(GameObject player)
+	protected override void StartPuzzle(int playerNumber)
     {
         Debug.Log("Starting puzzle...");
     }
-    private void Completed()
+
+    private void Update()
     {
-        CompletedPuzzle(player);
+        for (int i = 0; i < players.Length; i++)
+        {
+            for (int j = 0; j < playersDoing.Length; j++)
+            {
+                i = playersDoing[j];
+            }
+        }
+    }
+
+    private void Completed(int playerNumber)
+    {
+        CompletedPuzzle(playerNumber);
     }
 }

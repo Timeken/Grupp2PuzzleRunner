@@ -4,12 +4,25 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour {
 
+    protected GameObject[] players;
+
+    private void Start()
+    {
+        players = GameObject.FindGameObjectsWithTag("PLayer");
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            Activate(other.gameObject);
+            for (int i = 0; i < players.Length; i++)
+            {
+                if (other == players[i])
+                {
+                    Activate(i);
+                }
+            }
         }
     }
-    protected abstract void Activate(GameObject player);
+    protected abstract void Activate(int playerNumber);
 }
