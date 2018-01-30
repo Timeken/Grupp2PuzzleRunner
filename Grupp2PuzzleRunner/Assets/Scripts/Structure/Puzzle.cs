@@ -9,42 +9,43 @@ public abstract class Puzzle : Interactable {
     [SerializeField]
     private float secondsOpen;
     private float openTime;
-    private GameObject[] playersCompleted;
+    private int[] playersCompleted;
+    protected int[] playersDoing;
 
-    protected override void Activate(GameObject player)
+    protected override void Activate(int playerNumber)
     {
         if (bothPlayersMustComplete && playersCompleted.Length < 2 || !bothPlayersMustComplete && playersCompleted.Length < 1) {
-            if (Time.time > openTime && !AlreadyCompleted(player))
+            if (Time.time > openTime && !AlreadyCompleted(playerNumber))
             {
                 //Stoppa spelaren... player.GetComponent<PlayerController>().Stop();
-                StartPuzzle(player);
+                StartPuzzle(playerNumber);
             }
         }
     }
-    private bool AlreadyCompleted(GameObject player)
+    private bool AlreadyCompleted(int playerNumber)
     {
         for (int i = 0; i < playersCompleted.Length; i++)
         {
-            if (playersCompleted[i] == player)
+            if (playersCompleted[i] == playerNumber)
             {
                 return true;
             }
         }
         return false;
     }
-    protected void CompletedPuzzle(GameObject player)
+    protected void CompletedPuzzle(int playerNumber)
     {
         if (playersCompleted.Length > 0)
         {
-            GameObject playerCompleted = playersCompleted[0];
-            playersCompleted = new GameObject[2];
+            int playerCompleted = playersCompleted[0];
+            playersCompleted = new int[2];
             playersCompleted[0] = playerCompleted;
         } else
         {
-            playersCompleted = new GameObject[1];
+            playersCompleted = new int[1];
         }
-        playersCompleted[playersCompleted.Length - 1] = player;
+        playersCompleted[playersCompleted.Length - 1] = playerNumber;
         //Starta spelaren... player.GetComponent<PlayerController>().Start();
     }
-    protected abstract void StartPuzzle(GameObject player);
+    protected abstract void StartPuzzle(int playerNumber);
 }
