@@ -294,7 +294,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\ChooseKey.cs" />
+=======
+<<<<<<< HEAD
+    <Compile Include="Assets\Scripts\Character\PlayerControler.cs" />
+=======
+    <Compile Include="Assets\Scripts\Structure\Counting Sheep.cs" />
+    <Compile Include="Assets\Scripts\Structure\GammalTant.cs" />
+    <Compile Include="Assets\Scripts\Structure\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Structure\Player.cs" />
+    <Compile Include="Assets\Scripts\Structure\Puzzle.cs" />
+    <Compile Include="Assets\Scripts\Structure\Shortcut.cs" />
+>>>>>>> 952aaeeb78f3963e30ce2d1ba99fc1ab43d45293
+>>>>>>> 61ab3305d6df9b75b00775c11b9640c15e68c150
     <Compile Include="Assets\Scripts\Test.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
