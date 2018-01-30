@@ -15,9 +15,16 @@ public class CountingSheep : Puzzle {
         {
             for (int j = 0; j < playersDoing.Length; j++)
             {
-                i = playersDoing[j];
+                if(i == playersDoing[j])
+                {
+
+                }
             }
         }
+    }
+    private void PuzzleUpdate(int playerNumber)
+    {
+
     }
 
     private void Completed(int playerNumber)

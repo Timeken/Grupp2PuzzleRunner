@@ -16,7 +16,7 @@ public abstract class Shortcut : Interactable {
     }
     private bool InTheLead(int playerNumber)
     {
-        GameObject otherPlayer = new GameObject();
+        Player otherPlayer = new Player();
         for (int i = 0; i < players.Length; i++)
         {
             if (i != playerNumber)
