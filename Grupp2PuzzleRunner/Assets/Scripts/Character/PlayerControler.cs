@@ -11,7 +11,7 @@ public class PlayerControler : MonoBehaviour {
 
     private Rigidbody2D rigidbody2D;
     private Animator ani;
-
+    private Player player;
     private bool PlayerStop;
 
     // Use this for initialization
@@ -29,15 +29,19 @@ public class PlayerControler : MonoBehaviour {
         //TODO Add run animation
 
         //----------------------------------------Jump------------------------------------
-        if (Input.GetKeyDown(KeyCode.Space) && gameObject.transform.position.y < 0 && PlayerStop)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && gameObject.transform.position.y < 0 && PlayerStop ||
+            Input.GetKeyDown(KeyCode.Space) && gameObject.transform.position.y < 0 && PlayerStop) //Space and A to jump.
         {
             //TODO Add jump animation
+            print("jump");
             rigidbody2D.AddForce(Vector2.up * jumpSpeed);
         }
 
         //----------------------------------------Duck------------------------------------
-        if (Input.GetKeyDown(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop ||
+            Input.GetKeyDown(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to duck.
         {
+            print("duck");
             //TODO Add duck animation            
         }
     }
