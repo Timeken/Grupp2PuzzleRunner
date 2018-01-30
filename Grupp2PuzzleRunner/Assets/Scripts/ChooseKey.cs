@@ -14,6 +14,7 @@ public class ChooseKey : MonoBehaviour {
 	
 	
 	void Update () {
+
        //Navigation i menyn
        //När spelaren valt rätt nyckel
        //Player inputs
