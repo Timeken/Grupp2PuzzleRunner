@@ -300,6 +300,7 @@
     <Compile Include="Assets\Scripts\Structure\Counting Sheep.cs" />
     <Compile Include="Assets\Scripts\Structure\GammalTant.cs" />
     <Compile Include="Assets\Scripts\Structure\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Structure\Math.cs" />
     <Compile Include="Assets\Scripts\Structure\Puzzle.cs" />
     <Compile Include="Assets\Scripts\Structure\Shortcut.cs" />
   </ItemGroup>

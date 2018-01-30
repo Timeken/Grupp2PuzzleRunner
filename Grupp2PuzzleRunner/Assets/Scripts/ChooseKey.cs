@@ -17,9 +17,11 @@ public class ChooseKey : MonoBehaviour {
 	
 	
 	void Update () {
+        Navigation();
+        ButtonPress();
        //Navigation i menyn
        //När spelaren valt rätt nyckel
-       //Player inputs
+       //Player inputs**
 	}
 
     void Navigation()
@@ -29,6 +31,7 @@ public class ChooseKey : MonoBehaviour {
 
         if (Input.GetAxis("LeftJoystickVertical") >= 0.2)
         {
+            Debug.Log("vertical");
             if (navigationCheck == true)
             {
                 navigationCheck = false;
@@ -36,6 +39,7 @@ public class ChooseKey : MonoBehaviour {
                 if (arraySelection < keys.Length - 1)
                 {
                     arraySelection++;
+                    selectMaterial.color = Color.gray;                    
                 }
             }            
             if (Time.time > navigationTimer)
@@ -46,6 +50,7 @@ public class ChooseKey : MonoBehaviour {
 
         if (Input.GetAxis("LeftJoystickVertical") <= -0.2)
         {
+            Debug.Log("vertical");
             if (navigationCheck == true)
             {
                 navigationCheck = false;
@@ -53,6 +58,7 @@ public class ChooseKey : MonoBehaviour {
                 if (arraySelection > 0)
                 {
                     arraySelection--;
+                    selectMaterial.color = Color.gray;
                 }
             }
             if (Time.time > navigationTimer)
@@ -66,6 +72,7 @@ public class ChooseKey : MonoBehaviour {
     {
         if (Input.GetButtonDown("aButton") == true)
         {
+            Debug.Log("This works");
             if (Input.GetButtonDown("aButton") == CorrectKey)
             {
                 Debug.Log("Right key");
