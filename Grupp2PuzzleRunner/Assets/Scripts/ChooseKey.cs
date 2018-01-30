@@ -14,9 +14,21 @@ public class ChooseKey : MonoBehaviour {
 	
 	
 	void Update () {
-
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+        {
+            Debug.Log("yey");
+        }
+        else
+        {
+            Debug.Log("Wrong key");
+        }
        //Navigation i menyn
        //När spelaren valt rätt nyckel
        //Player inputs
 	}
+
+    void Navigation()
+    {
+        Input.GetKeyDown(KeyCode.)
+    }
 }
