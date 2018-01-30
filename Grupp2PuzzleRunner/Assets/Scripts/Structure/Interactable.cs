@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour {
 
-    protected GameObject[] players;
+    protected Player[] players;
 
     private void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("PLayer");
+        players = GameObject.FindObjectsOfType<Player>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
