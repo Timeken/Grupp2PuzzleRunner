@@ -10,6 +10,6 @@ public class CountingSheep : Puzzle {
     }
     private void Completed()
     {
-        CompletedPuzzle(player);
+        //CompletedPuzzle(player);
     }
 }
