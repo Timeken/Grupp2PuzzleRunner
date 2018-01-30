@@ -7,21 +7,16 @@ public class ChooseKey : MonoBehaviour {
     [SerializeField]
     GameObject[] keys;
     GameObject CorrectKey;
+    Material selectMaterial;
+    int arraySelection;
 
 	void Start () {
         CorrectKey = keys[Random.Range(0, keys.Length)];
+        arraySelection = 0;
 	}
 	
 	
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
-        {
-            Debug.Log("yey");
-        }
-        else
-        {
-            Debug.Log("Wrong key");
-        }
        //Navigation i menyn
        //När spelaren valt rätt nyckel
        //Player inputs
@@ -29,6 +24,60 @@ public class ChooseKey : MonoBehaviour {
 
     void Navigation()
     {
-        Input.GetKeyDown(KeyCode.)
+        bool navigationCheck = true;
+        float navigationTimer = 0;
+
+        if (Input.GetAxis("LeftJoystickVertical") >= 0.2)
+        {
+            if (navigationCheck == true)
+            {
+                navigationCheck = false;
+                navigationTimer = Time.time + 1f;
+                if (arraySelection < keys.Length - 1)
+                {
+                    arraySelection++;
+                }
+            }            
+            if (Time.time > navigationTimer)
+            {
+                navigationCheck = true;
+            }
+        }
+
+        if (Input.GetAxis("LeftJoystickVertical") <= -0.2)
+        {
+            if (navigationCheck == true)
+            {
+                navigationCheck = false;
+                navigationTimer = Time.time + 1f;
+                if (arraySelection > 0)
+                {
+                    arraySelection--;
+                }
+            }
+            if (Time.time > navigationTimer)
+            {
+                navigationCheck = true;
+            }
+        }               
+    }
+
+    void ButtonPress()
+    {
+        if (Input.GetButtonDown("aButton") == true)
+        {
+            if (Input.GetButtonDown("aButton") == CorrectKey)
+            {
+                Debug.Log("Right key");
+            }
+            else
+            {
+                Debug.Log("Wrong key bruh");
+            }
+        }
+        else
+        {
+            Debug.Log("Cannot press that");
+        }
     }
 }
