@@ -6,15 +6,17 @@ public class ChooseKey : MonoBehaviour {
 
     [SerializeField]
     GameObject[] keys;
-    GameObject CorrectKey;
-    int arraySelection;
 
+    GameObject CorrectKey;
+    GameObject CurrentKey;
+
+    int arraySelection;
     bool navigationCheck;
     float navigationTimer;
 
     void Start () {
         CorrectKey = keys[Random.Range(0, keys.Length)];
-        arraySelection = 0;
+        arraySelection = 0; 
 	}
 	
 	
@@ -23,7 +25,6 @@ public class ChooseKey : MonoBehaviour {
         ButtonPress();
        //Navigation i menyn
        //När spelaren valt rätt nyckel
-       //Player inputs**
 	}
 
     void Navigation()
@@ -31,12 +32,12 @@ public class ChooseKey : MonoBehaviour {
 
         if (Input.GetAxis("LeftJoystickHorizontal") >= 0.2)
         {
-            Debug.Log("Horizontal");
+            //Debug.Log("Horizontal");
             if (navigationCheck == true)
             {
                 navigationCheck = false;
                 navigationTimer = Time.time + 1f;
-                if (arraySelection < keys.Length - 1)
+                if (arraySelection < keys.Length)
                 {
                     Debug.Log(arraySelection);
                     arraySelection++;            
@@ -50,7 +51,7 @@ public class ChooseKey : MonoBehaviour {
 
         if (Input.GetAxis("LeftJoystickHorizontal") <= -0.2)
         {
-            Debug.Log("Horizontal");
+            //Debug.Log("Horizontal");
             if (navigationCheck == true)
             {
                 navigationCheck = false;
@@ -70,19 +71,16 @@ public class ChooseKey : MonoBehaviour {
 
     void ButtonPress()
     {
-        if (Input.GetButtonDown("aButton") == true)
+        if (Input.GetButtonDown("aButton") == CorrectKey)
         {
-            Debug.Log("This works");
-            if (Input.GetButtonDown("aButton") == CorrectKey)
-            {
-                Debug.Log("Right key");
-            }
-            else if (!Input.GetButtonDown("aButton") == CorrectKey)
-            {
-                Debug.Log("Wrong Key");
-            }
+           Debug.Log("Right key");
         }
-        else if (!Input.GetButtonDown("aButton"))
+        else if (Input.GetButtonDown("aButton") != CorrectKey)
+        {
+           Debug.Log("Wrong Key");
+        }
+        
+        else if (Input.GetButtonDown("bButton") || Input.GetButtonDown("xButton") || Input.GetButtonDown("yButton"))
         {
             Debug.Log("Cannot press that");
         }
