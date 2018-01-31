@@ -44,10 +44,12 @@ public class CountingSheep : Puzzle {
         for (int j = 0; j < amountOfSheep[1]; j++)
         {
             sheeps2[j] = Instantiate(sheep, canvas[1].transform);
+            sheeps2[j].transform.GetChild(0).gameObject.layer = 8+1;
         }
         for (int j = 0; j < amountOfSheep[0]; j++)
         {
             sheeps[j] = Instantiate(sheep, canvas[0].transform);
+            sheeps[j].transform.GetChild(0).gameObject.layer = 8;
         }
         for (int i = 0; i < sheeps2.Length; i++)
         {

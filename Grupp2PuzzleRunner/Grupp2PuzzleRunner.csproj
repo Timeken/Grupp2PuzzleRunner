@@ -293,11 +293,13 @@
     <Compile Include="Assets\Scripts\ChooseKey.cs" />
     <Compile Include="Assets\Scripts\Objects\Sheep.cs" />
     <Compile Include="Assets\Scripts\Puzzles\CountingSheep.cs" />
-    <Compile Include="Assets\Scripts\Structure\GammalTant.cs" />
+    <Compile Include="Assets\Scripts\Puzzles\Stepmania.cs" />
+    <Compile Include="Assets\Scripts\Shortcuts\GammalTant.cs" />
     <Compile Include="Assets\Scripts\Structure\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Structure\Math.cs" />
     <Compile Include="Assets\Scripts\Structure\Puzzle.cs" />
+    <Compile Include="Assets\Scripts\Structure\RightOrder.cs" />
     <Compile Include="Assets\Scripts\Structure\Shortcut.cs" />
-    <Compile Include="Assets\Scripts\Test.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

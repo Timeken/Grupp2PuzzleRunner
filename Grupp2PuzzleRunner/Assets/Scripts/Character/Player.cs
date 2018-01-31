@@ -6,6 +6,8 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     private string horizontalAxis, verticleAxis, aButton, bButton, xButton, yButton;
+    [SerializeField]
+    private PlayerControler PC;
 
     public string Horizontal()
     {
@@ -30,5 +32,11 @@ public class Player : MonoBehaviour {
     public string Y()
     {
         return yButton;
+    }
+    public IEnumerator ChangeSpeed(float speed, float duration)
+    {
+        PC.SetSpeed(speed);
+        yield return new WaitForSeconds(duration);
+        PC.SetSpeed();
     }
 }

@@ -7,7 +7,7 @@ public abstract class Puzzle : Interactable {
     [SerializeField]
     protected bool bothPlayersMustComplete;
     [SerializeField]
-    private float secondsOpen;
+    protected float secondsOpen;
     private float openTime;
     private int[] playersCompleted = new int[0];
     protected int[] playersDoing = new int[0];
@@ -15,14 +15,17 @@ public abstract class Puzzle : Interactable {
     protected override void Activate(int playerNumber)
     {
         Debug.Log("Activating");
-        if (bothPlayersMustComplete && playersCompleted.Length < 2 || !bothPlayersMustComplete && playersCompleted.Length < 1) {
-            if (Time.time > openTime && !AlreadyCompleted(playerNumber))
+        if (Time.time > openTime)
+        {
+            if (bothPlayersMustComplete && playersCompleted.Length < 2 || !bothPlayersMustComplete && playersCompleted.Length < 1)
             {
-                //Stoppa spelaren... player.GetComponent<PlayerController>().Stop();
-                players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
-                Debug.Log("Activating");
-                Doing(playerNumber);
-                StartPuzzle(playerNumber);
+                if (!AlreadyCompleted(playerNumber))
+                {
+                    players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
+                    Debug.Log("Activating");
+                    Doing(playerNumber);
+                    StartPuzzle(playerNumber);
+                }
             }
         }
     }
@@ -39,6 +42,7 @@ public abstract class Puzzle : Interactable {
     }
     protected void CompletedPuzzle(int playerNumber)
     {
+        openTime = Time.time + secondsOpen;
         if (playersCompleted.Length > 0)
         {
             int playerCompleted = playersCompleted[0];
@@ -50,7 +54,18 @@ public abstract class Puzzle : Interactable {
         }
         playersCompleted[playersCompleted.Length - 1] = playerNumber;
         //Starta spelaren... player.GetComponent<PlayerController>().Start();
-        players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
+        if (secondsOpen == 0)
+        {
+            players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
+        } else
+        {
+            int n = playersDoing.Length;
+            for (int i = 0; i < n; i++)
+            {
+                StopDoing(i);
+                players[i].GetComponent<PlayerControler>().SetPlayerStartStop();
+            }
+        }
     }
     protected void Doing(int playerNumber)
     {
