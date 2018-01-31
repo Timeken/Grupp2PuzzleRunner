@@ -29,10 +29,6 @@ public class CountingSheep : Puzzle {
 
     private void Completed(int playerNumber)
     {
-<<<<<<< HEAD
-        //CompletedPuzzle(player);
-=======
         CompletedPuzzle(playerNumber);
->>>>>>> 656734a680a2cfc1572cbcbb524fa8f7ae40d7c1
     }
 }
