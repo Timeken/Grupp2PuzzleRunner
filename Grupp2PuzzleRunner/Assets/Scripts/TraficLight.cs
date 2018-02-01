@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class TraficLight : MonoBehaviour {
 	public float reapeatRateSec = 0.5f;
+	public int scoreIncrease = 5;
 	public int scoreDecrease = 4;
 	int curScore = 0;
 	int maxScore = 100;
-	public bool b = false;
+	bool b = false;
 
 	void Start () {
 		InvokeRepeating("decreaseNos", 0.0f, reapeatRateSec);
@@ -22,7 +23,7 @@ public class TraficLight : MonoBehaviour {
 		if (b == true) 
 		{
 			if (Input.GetButtonDown ("Space") && curScore < maxScore) {
-				curScore += 5;
+				curScore += scoreIncrease;
 				Debug.Log (curScore);
 
 			}
