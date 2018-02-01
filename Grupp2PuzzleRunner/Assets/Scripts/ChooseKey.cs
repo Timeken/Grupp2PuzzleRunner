@@ -2,89 +2,137 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChooseKey : MonoBehaviour {
+public class ChooseKey : Puzzle {
 
     [SerializeField]
-    GameObject[] keys;
-    GameObject CorrectKey;
-    Material selectMaterial;
-    int arraySelection;
+	GameObject[] keys0, keys1;
+    GameObject[,] keys;
+    [SerializeField]
+    GameObject[] selection;
+    [SerializeField]
+    GameObject[] keyHoles;
+	[SerializeField]
+	GameObject[] puzzleGraphics;
+    [SerializeField]
+    SpriteRenderer door;
+    [SerializeField]
+    Sprite[] doorSprites;
+
+    int CorrectKey;
+    float[] cdTime;
+    int[] arraySelection;
+    float[] navigationTimer;
 
 	void Start () {
-        CorrectKey = keys[Random.Range(0, keys.Length)];
-        arraySelection = 0;
+		players = GameObject.FindObjectsOfType<Player> ();
+		keys = new GameObject[2, keys1.Length];
+		CorrectKey = Random.Range (0, keys.GetLength (1));
+        Debug.Log(CorrectKey);
+		arraySelection = new int[2];
+		navigationTimer = new float[2];
+		cdTime = new float[2];
+		for (int i = 0; i < keys0.Length; i++) {
+			keys [0, i] = keys0 [i];
+		}
+		for (int i = 0; i < keys1.Length; i++) {
+			keys [1, i] = keys1 [i];
+		}
+	}
+
+	protected override void StartPuzzle (int playerNumber) {
+		puzzleGraphics[playerNumber].SetActive (true);
 	}
 	
 	
 	void Update () {
-        Navigation();
-        ButtonPress();
-       //Navigation i menyn
-       //När spelaren valt rätt nyckel
-       //Player inputs**
+		for (int i = 0; i < players.Length; i++)
+		{
+			for (int j = 0; j < playersDoing.Length; j++)
+			{
+				if (i == playersDoing[j])
+				{
+					PuzzleUpdate(i);
+				}
+			}
+		}
 	}
 
-    void Navigation()
-    {
-        bool navigationCheck = true;
-        float navigationTimer = 0;
+	void PuzzleUpdate(int playerNumber) {
+		if (Time.time > cdTime[playerNumber]) {
+			Navigation (playerNumber);
+			ButtonPress (playerNumber);
+			//Navigation i pusslet
+			//När spelaren valt rätt nyckel
+		}
+	}
 
-        if (Input.GetAxis("LeftJoystickVertical") >= 0.2)
+	void Navigation(int playerNumber)
+    {
+		if (Input.GetAxis(players[playerNumber].Horizontal()) >= 0.2)
         {
-            Debug.Log("vertical");
-            if (navigationCheck == true)
-            {
-                navigationCheck = false;
-                navigationTimer = Time.time + 1f;
-                if (arraySelection < keys.Length - 1)
-                {
-                    arraySelection++;
-                    selectMaterial.color = Color.gray;                    
-                }
-            }            
-            if (Time.time > navigationTimer)
-            {
-                navigationCheck = true;
-            }
+			if (Time.time > navigationTimer[playerNumber]) {
+				navigationTimer[playerNumber] = Time.time + 1f;
+                arraySelection[playerNumber]++;
+                if (arraySelection[playerNumber] < keys.GetLength(1)) {
+					Debug.Log (arraySelection[playerNumber]);
+					selection[playerNumber].transform.position = keys [playerNumber, arraySelection[playerNumber]].transform.position;
+				} else {
+					arraySelection[playerNumber] = 0;
+                    Debug.Log(arraySelection[playerNumber]);
+                    selection[playerNumber].transform.position = keys [playerNumber, arraySelection[playerNumber]].transform.position;
+				}
+			}
         }
 
-        if (Input.GetAxis("LeftJoystickVertical") <= -0.2)
+		if (Input.GetAxis(players[playerNumber].Horizontal()) <= -0.2)
         {
-            Debug.Log("vertical");
-            if (navigationCheck == true)
-            {
-                navigationCheck = false;
-                navigationTimer = Time.time + 1f;
-                if (arraySelection > 0)
-                {
-                    arraySelection--;
-                    selectMaterial.color = Color.gray;
-                }
+			if (Time.time > navigationTimer[playerNumber])
+			{
+				navigationTimer[playerNumber] = Time.time + 1f;
+                arraySelection[playerNumber]--;
+                if (arraySelection [playerNumber] >= 0) {
+					Debug.Log (arraySelection [playerNumber]);
+					selection[playerNumber].transform.position = keys [playerNumber, arraySelection[playerNumber]].transform.position;
+				} else {
+					arraySelection[playerNumber] = keys.GetLength(1) - 1;
+                    Debug.Log(arraySelection[playerNumber]);
+                    selection[playerNumber].transform.position = keys [playerNumber, arraySelection[playerNumber]].transform.position;
+				}
             }
-            if (Time.time > navigationTimer)
-            {
-                navigationCheck = true;
-            }
-        }               
+        }
     }
 
-    void ButtonPress()
-    {
-        if (Input.GetButtonDown("aButton") == true)
+	void ButtonPress(int playerNumber)
+    {  
+		if (Input.GetButtonDown(players[playerNumber].A()) == true)
         {
-            Debug.Log("This works");
-            if (Input.GetButtonDown("aButton") == CorrectKey)
+			if (CorrectKey == arraySelection[playerNumber])
             {
-                Debug.Log("Right key");
+				Completed (playerNumber);
             }
-            else
+
+			else
             {
-                Debug.Log("Wrong key bruh");
+				IncorrectKey (playerNumber);
             }
-        }
-        else
-        {
-            Debug.Log("Cannot press that");
         }
     }
+	void Completed(int playerNumber) {
+		Debug.Log ("Player " + (playerNumber + 1) + " pressed the right key!");
+        for (int i = 0; i < puzzleGraphics.Length; i++)
+        {
+            puzzleGraphics[i].SetActive(false);
+        }
+        CompletedPuzzle(playerNumber);
+        door.sprite = doorSprites[1];
+        Invoke("CloseDoor", secondsOpen);
+    }
+    private void CloseDoor()
+    {
+        door.sprite = doorSprites[0];
+    }
+    void IncorrectKey(int playerNumber) {
+		Debug.Log("Wrong key, try again");              
+		cdTime[playerNumber] = Time.time + 2;
+	}
 }
