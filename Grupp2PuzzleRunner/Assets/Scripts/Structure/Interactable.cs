@@ -13,11 +13,12 @@ public abstract class Interactable : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        Debug.Log("OnTriggerEnter");
+        if (other.tag == "Player" && !other.GetComponent<PlayerControler>().Shortcut())
         {
             for (int i = 0; i < players.Length; i++)
             {
-                if (other == players[i])
+                if (other.gameObject == players[i].gameObject)
                 {
                     Activate(i);
                 }
