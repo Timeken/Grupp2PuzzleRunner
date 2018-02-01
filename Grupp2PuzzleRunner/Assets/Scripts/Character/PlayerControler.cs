@@ -12,6 +12,9 @@ public class PlayerControler : MonoBehaviour {
 
     private Rigidbody2D rigidbody2D;
     private Animator ani;
+    int jumpHash = Animator.StringToHash("Jump");
+    int runStateHash = Animator.StringToHash("Run");
+
     private Player player;
     private bool PlayerStop;
 
@@ -19,22 +22,25 @@ public class PlayerControler : MonoBehaviour {
     void Start () {
         speed = defaultSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
-        ani = GetComponent<Animator>();
+        ani = GetComponentInChildren<Animator>();
         PlayerStop = true;
     }
 	
 	// Update is called once per frame
 	void Update () {
         //----------------------------------------RunRight------------------------------------
-        if(PlayerStop)
-        transform.Translate(Vector2.right * Time.deltaTime * speed);
-        //TODO Add run animation
-
+        if (PlayerStop)
+        {
+            transform.Translate(Vector2.right * Time.deltaTime * speed);
+            ani.SetTrigger(runStateHash);
+            //TODO Add run animation
+        }
         //----------------------------------------Jump------------------------------------
         if (Input.GetKeyDown(KeyCode.Joystick1Button0) && gameObject.transform.position.y < 0 && PlayerStop ||
             Input.GetKeyDown(KeyCode.Space) && gameObject.transform.position.y < 0 && PlayerStop) //Space and A to jump.
         {
             //TODO Add jump animation
+            ani.SetTrigger(jumpHash);
             print("jump");
             rigidbody2D.AddForce(Vector2.up * jumpSpeed);
         }
