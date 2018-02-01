@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -252,15 +254,12 @@
     </Reference>
     <Reference Include="UnityEditor.Graphs">
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
-<<<<<<< HEAD
     </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.dll</HintPath>
-=======
->>>>>>> 18b0445aa676c6eac1216a299e7c2682265ea376
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
@@ -288,21 +287,20 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>Library\UnityAssemblies\UnityEngine.StandardEvents.dll</HintPath>
-<<<<<<< HEAD
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Common">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-=======
->>>>>>> 18b0445aa676c6eac1216a299e7c2682265ea376
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Character\Player.cs" />
     <Compile Include="Assets\Scripts\Character\PlayerControler.cs" />
-    <Compile Include="Assets\Scripts\ChooseKey.cs" />
+    <Compile Include="C:\Users\Tobias Årnell\Desktop\ChooseKey.cs">
+      <Link>Assets\Scripts\ChooseKey.cs</Link>
+    </Compile>
     <Compile Include="Assets\Scripts\Structure\Counting Sheep.cs" />
     <Compile Include="Assets\Scripts\Structure\GammalTant.cs" />
     <Compile Include="Assets\Scripts\Structure\Interactable.cs" />
