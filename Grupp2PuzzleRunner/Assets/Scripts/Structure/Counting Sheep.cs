@@ -29,8 +29,6 @@ public class CountingSheep : Puzzle {
 
     private void Completed(int playerNumber)
     {
-
         CompletedPuzzle(playerNumber);
-
     }
 }
