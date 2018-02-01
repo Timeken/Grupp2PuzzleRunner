@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -253,9 +255,12 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> 003f3b82e6854630c684c6b32aca5855fc324638
+=======
+>>>>>>> 4df653220ef15e93f5372cc5f1ed4b263dc88bfa
     </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
@@ -266,9 +271,12 @@
 =======
     <Reference Include="UnityEditor.iOS.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.dll</HintPath>
+<<<<<<< HEAD
 =======
 >>>>>>> 18b0445aa676c6eac1216a299e7c2682265ea376
 >>>>>>> 003f3b82e6854630c684c6b32aca5855fc324638
+=======
+>>>>>>> 4df653220ef15e93f5372cc5f1ed4b263dc88bfa
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
@@ -297,28 +305,42 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>Library\UnityAssemblies\UnityEngine.StandardEvents.dll</HintPath>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 4df653220ef15e93f5372cc5f1ed4b263dc88bfa
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Common">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+<<<<<<< HEAD
 =======
 >>>>>>> 18b0445aa676c6eac1216a299e7c2682265ea376
 >>>>>>> 003f3b82e6854630c684c6b32aca5855fc324638
+=======
+>>>>>>> 4df653220ef15e93f5372cc5f1ed4b263dc88bfa
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Character\Player.cs" />
     <Compile Include="Assets\Scripts\Character\PlayerControler.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\ChooseKey.cs" />
     <Compile Include="Assets\Scripts\Objects\Sheep.cs" />
     <Compile Include="Assets\Scripts\Puzzles\CountingSheep.cs" />
     <Compile Include="Assets\Scripts\Puzzles\Stepmania.cs" />
     <Compile Include="Assets\Scripts\Shortcuts\GammalTant.cs" />
     <Compile Include="Assets\Scripts\Shortcuts\Taxi.cs" />
+=======
+    <Compile Include="C:\Users\Tobias Årnell\Desktop\ChooseKey.cs">
+      <Link>Assets\Scripts\ChooseKey.cs</Link>
+    </Compile>
+    <Compile Include="Assets\Scripts\Structure\Counting Sheep.cs" />
+    <Compile Include="Assets\Scripts\Structure\GammalTant.cs" />
+>>>>>>> 4df653220ef15e93f5372cc5f1ed4b263dc88bfa
     <Compile Include="Assets\Scripts\Structure\Interactable.cs" />
     <Compile Include="Assets\Scripts\Structure\Math.cs" />
     <Compile Include="Assets\Scripts\Structure\Puzzle.cs" />
