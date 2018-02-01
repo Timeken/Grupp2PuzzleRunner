@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class RightOrder : MonoBehaviour {
 
-    int numbersRequierd = 5;
-    int[] number = new int[5];
+    int numbersRequierd = 5; //change this to add more or less steps, aka difficult.
+    int[] number = new int[5]; //change this to add more or less steps, aka difficult.
     int rightTrys;
     bool retry = true;
     bool showOrder = true;
+    bool loop = true;
 
     int showingOrder = 0;
 
@@ -17,7 +18,6 @@ public class RightOrder : MonoBehaviour {
 
     GameObject player;
 
-	// Use this for initialization
 	void Start ()
     {
         pictureArray[0].SetActive(false);
@@ -26,17 +26,17 @@ public class RightOrder : MonoBehaviour {
         pictureArray[3].SetActive(false);
     }
 	
-	// Update is called once per frame
 	void Update ()
     {
         if (retry)
         {
             for (int i = 0; i < numbersRequierd; i++)
             {
-                number[i] = Random.Range(0, 3);
+                number[i] = Random.Range(0, 4);
                 print(number[i]);
             }
             rightTrys = 0;
+            showingOrder = 0;
             retry = false;
             showOrder = true;
         }
@@ -53,52 +53,65 @@ public class RightOrder : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && number[rightTrys] == 0)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && number[rightTrys] == 0 && !loop)
         {
             rightTrys++;
+            //TODO play the "correct" sound
         }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button0) && number[rightTrys] != 0)
+        else if (Input.GetKeyDown(KeyCode.Joystick1Button0) && number[rightTrys] != 0 && !loop)
         {
             retry = true;
+            //TODO play the "wrong" sound
         }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button1) && number[rightTrys] == 1)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1) && number[rightTrys] == 1 && !loop)
         {
             rightTrys++;
+            //TODO play the "correct" sound
         }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button1) && number[rightTrys] != 1)
+        else if (Input.GetKeyDown(KeyCode.Joystick1Button1) && number[rightTrys] != 1 && !loop)
         {
             retry = true;
+            //TODO play the "wrong" sound
         }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2) && number[rightTrys] == 2)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2) && number[rightTrys] == 2 && !loop)
         {
             rightTrys++;
+            //TODO play the "correct" sound
         }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button2) && number[rightTrys] != 2)
+        else if (Input.GetKeyDown(KeyCode.Joystick1Button2) && number[rightTrys] != 2 && !loop)
         {
             retry = true;
+            //TODO play the "wrong" sound
         }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button3) && number[rightTrys] == 3)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button3) && number[rightTrys] == 3 && !loop)
         {
             rightTrys++;
+            //TODO play the "correct" sound
         }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button3) && number[rightTrys] != 3)
+        else if (Input.GetKeyDown(KeyCode.Joystick1Button3) && number[rightTrys] != 3 && !loop)
         {
             retry = true;
+            //TODO play the "wrong" sound
         }
     }
 
     IEnumerator ShowOrdering()
     {
-        //TODO fix the loopng pictures.
-        pictureArray[number[showingOrder]].SetActive(true);
-        print("test");
-        yield return new WaitForSeconds(1);
-        print("test1");
-        pictureArray[number[showingOrder]].SetActive(false);
-        showingOrder++;
-        if(showingOrder == numbersRequierd)
+        loop = true;
+        while (loop)
         {
-            StopCoroutine("ShowOrdering");
+            pictureArray[number[showingOrder]].SetActive(true);
+            yield return new WaitForSeconds(1);
+            pictureArray[number[showingOrder]].SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            print(showingOrder + " and " + numbersRequierd);
+            showingOrder++;
+            if (showingOrder == numbersRequierd)
+            {
+                StopCoroutine("ShowOrdering");
+                loop = false;
+                showingOrder = 0;
+            }
         }
     }
 
