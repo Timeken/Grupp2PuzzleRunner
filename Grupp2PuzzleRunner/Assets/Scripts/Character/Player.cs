@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private PlayerControler PC;
     [SerializeField]
-    private SpriteRenderer characterRenderer;
+    private GameObject characterGrafics;
 
     public string Horizontal()
     {
@@ -43,8 +43,8 @@ public class Player : MonoBehaviour {
     }
     public IEnumerator HideCharacter(float duration)
     {
-        characterRenderer.enabled = false;
+        characterGrafics.SetActive(false);
         yield return new WaitForSeconds(duration);
-        characterRenderer.enabled = true;
+        characterGrafics.SetActive(true);
     }
 }
