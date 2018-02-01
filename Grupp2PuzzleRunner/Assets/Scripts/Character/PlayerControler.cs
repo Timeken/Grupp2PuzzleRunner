@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerControler : MonoBehaviour {
 
     [SerializeField]
+    float defaultSpeed;
     float speed;
     [SerializeField]
     float jumpSpeed;
@@ -19,6 +20,7 @@ public class PlayerControler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        speed = defaultSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
         ani = GetComponentInChildren<Animator>();
         PlayerStop = true;
@@ -54,5 +56,22 @@ public class PlayerControler : MonoBehaviour {
     public void SetPlayerStartStop()
     {
         PlayerStop =! PlayerStop;
+    }
+    public void SetSpeed(float speed = 0)
+    {
+        if (speed == 0)
+        {
+            this.speed = defaultSpeed;
+        }
+        else
+        {
+            this.speed = speed;
+        }
+    }
+    public bool Shortcut()
+    {
+        if (speed != defaultSpeed)
+            return true;
+        return false;
     }
 }

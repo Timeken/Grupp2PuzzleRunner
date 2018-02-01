@@ -6,24 +6,30 @@ public class ChooseKey : MonoBehaviour {
 
     [SerializeField]
     GameObject[] keys;
+    [SerializeField]
+    GameObject selection;
+    [SerializeField]
+    GameObject[] keyHoles;
 
-    GameObject CorrectKey;
-    GameObject CurrentKey;
-
+    int CorrectKey;
+    float cdTime = 2f;
     int arraySelection;
     bool navigationCheck;
     float navigationTimer;
 
     void Start () {
-        CorrectKey = keys[Random.Range(0, keys.Length)];
+        CorrectKey = Random.Range(0, keys.Length);
         arraySelection = 0; 
 	}
 	
 	
 	void Update () {
-        Navigation();
-        ButtonPress();
-       //Navigation i menyn
+        if (Time.time > cdTime)
+        {
+            Navigation();
+            ButtonPress();
+        }
+       //Navigation i pusslet
        //När spelaren valt rätt nyckel
 	}
 
@@ -40,7 +46,8 @@ public class ChooseKey : MonoBehaviour {
                 if (arraySelection < keys.Length)
                 {
                     Debug.Log(arraySelection);
-                    arraySelection++;            
+                    arraySelection++;
+                    selection.transform.position = keys[arraySelection].transform.position;
                 }
             }            
             if (Time.time > navigationTimer)
@@ -60,6 +67,7 @@ public class ChooseKey : MonoBehaviour {
                 {
                     Debug.Log(arraySelection);
                     arraySelection--;
+                    selection.transform.position = keys[arraySelection].transform.position;
                 }
             }
             if (Time.time > navigationTimer)
@@ -70,15 +78,22 @@ public class ChooseKey : MonoBehaviour {
     }
 
     void ButtonPress()
-    {
-        if (Input.GetButtonDown("aButton") == CorrectKey)
+    {  
+        if (Input.GetButtonDown("aButton") == true)
         {
-           Debug.Log("Right key");
+            if (CorrectKey == arraySelection)
+            {
+                Debug.Log("Right key");
+            }
+
+            else if (CorrectKey != arraySelection)
+            {
+                Debug.Log("Wrong key, try again");              
+                cdTime = Time.time + 2;
+                
+            }
         }
-        else if (Input.GetButtonDown("aButton") != CorrectKey)
-        {
-           Debug.Log("Wrong Key");
-        }
+        
         
         else if (Input.GetButtonDown("bButton") || Input.GetButtonDown("xButton") || Input.GetButtonDown("yButton"))
         {
