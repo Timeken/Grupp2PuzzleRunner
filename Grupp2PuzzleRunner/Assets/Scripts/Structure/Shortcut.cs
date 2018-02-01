@@ -5,18 +5,25 @@ using UnityEngine;
 public abstract class Shortcut : Interactable {
 
     [SerializeField]
-    private float minDistanceBehind;
+    private float minDistance;
+    [SerializeField]
+    private bool longcut;
+    private bool used;
 
 	protected override void Activate(int playerNumber)
     {
-        if (!InTheLead(playerNumber) && DistanceBetweenPlayers() > minDistanceBehind)
+        if (!used)
         {
-            StartShortcut(playerNumber);
+            if (!longcut && !InTheLead(playerNumber) && DistanceBetweenPlayers() > minDistance || longcut && InTheLead(playerNumber) && DistanceBetweenPlayers() > minDistance)
+            {
+                used = true;
+                StartShortcut(playerNumber);
+            }
         }
     }
     private bool InTheLead(int playerNumber)
     {
-        Player otherPlayer = new Player();
+        Player otherPlayer = null;
         for (int i = 0; i < players.Length; i++)
         {
             if (i != playerNumber)
