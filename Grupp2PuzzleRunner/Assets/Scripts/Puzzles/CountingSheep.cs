@@ -28,28 +28,30 @@ public class CountingSheep : Puzzle {
             players[i].GetComponent<PlayerControler>().SetPlayerStartStop();
             Doing(i);
         }
-        CreateSheep();
+        StartCoroutine(CreateSheep());
     }
-    private void CreateSheep()
+    private IEnumerator CreateSheep()
     {
         for (int i = 0; i < players.Length; i++)
         {
             guess[i] = 0;
             canvas[i].SetActive(true);
             amountOfSheep[i] = Random.Range(minSheep, maxSheep);
-            StartCoroutine(ChangeText(text[i], "Hur många får visades?\nYour guess: " + guess[i] + "."));
         }
+        yield return new WaitForSeconds(3);
         sheeps = new GameObject[amountOfSheep[0]];
         sheeps2 = new GameObject[amountOfSheep[1]];
         for (int j = 0; j < amountOfSheep[1]; j++)
         {
             sheeps2[j] = Instantiate(sheep, canvas[1].transform);
             sheeps2[j].transform.GetChild(0).gameObject.layer = 8+1;
+            StartCoroutine(ChangeText(text[1], "Hur många får visades?\nYour guess: " + guess[1] + "."));
         }
         for (int j = 0; j < amountOfSheep[0]; j++)
         {
             sheeps[j] = Instantiate(sheep, canvas[0].transform);
             sheeps[j].transform.GetChild(0).gameObject.layer = 8;
+            StartCoroutine(ChangeText(text[0], "Hur många får visades?\nYour guess: " + guess[0] + "."));
         }
         for (int i = 0; i < sheeps2.Length; i++)
         {

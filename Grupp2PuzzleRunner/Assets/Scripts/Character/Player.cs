@@ -8,6 +8,8 @@ public class Player : MonoBehaviour {
     private string horizontalAxis, verticleAxis, aButton, bButton, xButton, yButton;
     [SerializeField]
     private PlayerControler PC;
+    [SerializeField]
+    private SpriteRenderer characterRenderer;
 
     public string Horizontal()
     {
@@ -38,5 +40,11 @@ public class Player : MonoBehaviour {
         PC.SetSpeed(speed);
         yield return new WaitForSeconds(duration);
         PC.SetSpeed();
+    }
+    public IEnumerator HideCharacter(float duration)
+    {
+        characterRenderer.enabled = false;
+        yield return new WaitForSeconds(duration);
+        characterRenderer.enabled = true;
     }
 }

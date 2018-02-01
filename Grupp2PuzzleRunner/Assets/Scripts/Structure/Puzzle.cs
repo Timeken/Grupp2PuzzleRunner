@@ -59,11 +59,18 @@ public abstract class Puzzle : Interactable {
             players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
         } else
         {
-            int n = playersDoing.Length;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < playersDoing.Length; i++)
             {
-                StopDoing(i);
-                players[i].GetComponent<PlayerControler>().SetPlayerStartStop();
+                for (int j = 0; j < players.Length; j++)
+                {
+                    if (j == playersDoing[i])
+                    {
+                        i--;
+                        StopDoing(j);
+                        players[j].GetComponent<PlayerControler>().SetPlayerStartStop();
+                        break;
+                    }
+                }
             }
         }
     }

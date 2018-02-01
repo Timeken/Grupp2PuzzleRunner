@@ -55,13 +55,17 @@ public class PlayerControler : MonoBehaviour {
     {
         if (speed == 0)
         {
-            Debug.Log(speed);
             this.speed = defaultSpeed;
-            Debug.Log(speed);
         }
         else
         {
             this.speed = speed;
         }
+    }
+    public bool Shortcut()
+    {
+        if (speed != defaultSpeed)
+            return true;
+        return false;
     }
 }
