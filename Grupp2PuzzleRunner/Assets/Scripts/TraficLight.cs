@@ -3,24 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TraficLight : MonoBehaviour {
+	public float reapeatRateSec = 0.5f;
+	public int scoreIncrease = 5;
+	public int scoreDecrease = 4;
 	int curScore = 0;
 	int maxScore = 100;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+	bool b = false;
 
-		if (Input.GetButtonDown ("Space") && curScore < maxScore)
+	void Start () {
+		InvokeRepeating("decreaseNos", 0.0f, reapeatRateSec);
+	}
+	void OnTriggerEnter (Collider other)
+	{
+		b = true;
+	}
+
+	void Update () 
+	{
+		if (b == true) 
 		{
-			curScore = curScore + 5;
-			Debug.Log (curScore);
-			if (curScore > 0 && curScore != maxScore) 
-			{
-				Debug.Log ("H");
+			if (Input.GetButtonDown ("Space") && curScore < maxScore) {
+				curScore += scoreIncrease;
+				Debug.Log (curScore);
+
 			}
+			if (curScore >= maxScore) {
+				b = false;
+				Destroy (gameObject);
+			}
+		}
+	} 
+	void decreaseNos()
+	{
+		if (curScore > 0)
+		{
+			curScore -= scoreDecrease;
 		}
 	}
 

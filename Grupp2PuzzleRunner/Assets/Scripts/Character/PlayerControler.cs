@@ -14,12 +14,11 @@ public class PlayerControler : MonoBehaviour {
     private Animator ani;
     int jumpHash = Animator.StringToHash("Jump");
     int runStateHash = Animator.StringToHash("Run");
-    int crouchStateHash = Animator.StringToHash("Crouch");
+    int crouchStateHash = Animator.StringToHash("IsCrouched");
 
     private Player player;
     private bool PlayerStop;
 
-    // Use this for initialization
     void Start () {
         speed = defaultSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -27,7 +26,6 @@ public class PlayerControler : MonoBehaviour {
         PlayerStop = true;
     }
 	
-	// Update is called once per frame
 	void Update () {
         //----------------------------------------RunRight------------------------------------
         if (PlayerStop)
@@ -40,26 +38,22 @@ public class PlayerControler : MonoBehaviour {
             Input.GetKeyDown(KeyCode.Space) && gameObject.transform.position.y < 0 && PlayerStop) //Space and A to jump.
         {
             ani.SetTrigger(jumpHash);
-            print("jump");
             rigidbody2D.AddForce(Vector2.up * jumpSpeed);
         }
-
-
         //----------------------------------------Crouch------------------------------------
-        if (Input.GetKeyDown(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop ||
-            Input.GetKeyDown(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to duck.
+        if (Input.GetKey(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop  ||
+            Input.GetKey(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop ) //LeftShift and B to crouch.
         {
-            print("crouch");
-            ani.SetTrigger(crouchStateHash);           
+            ani.SetBool(crouchStateHash, true);       
         }
 
         if (Input.GetKeyUp(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop ||
-            Input.GetKeyUp(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to duck.
+            Input.GetKeyUp(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to crouch.
         {
-            print("crouch");
-            ani.SetTrigger(crouchStateHash);        
+            ani.SetBool(crouchStateHash, false);
         }
     }
+    
     public void SetPlayerStartStop()
     {
         PlayerStop =! PlayerStop;
