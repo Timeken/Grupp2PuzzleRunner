@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Objects\Sheep.cs" />
      <Compile Include="Assets\Scripts\Puzzles\CountingSheep.cs" />
      <Compile Include="Assets\Scripts\Puzzles\Stepmania.cs" />
+     <Compile Include="Assets\Scripts\SceneChanger.cs" />
      <Compile Include="Assets\Scripts\Shortcuts\GammalTant.cs" />
      <Compile Include="Assets\Scripts\Shortcuts\Taxi.cs" />
      <Compile Include="Assets\Scripts\Structure\Interactable.cs" />

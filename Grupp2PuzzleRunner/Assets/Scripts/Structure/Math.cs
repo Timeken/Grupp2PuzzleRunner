@@ -21,13 +21,27 @@ public class Math : MonoBehaviour {
 			myCanvas.enabled = false;
 			Debug.Log("No Canvas");
 	}
-	public void RightAnswer()
+	void Update()
 	{
-		Debug.Log ("Right Answer!");
-		Destroy (ob);
-	}
-	public void WrongAnswer()
-	{
-		Debug.Log ("Wrong Answer!");
+		if (myCanvas.enabled == true) 
+		{
+			if (Input.GetButtonDown ("yButton")) {
+				Debug.Log ("Right Answer!");
+				myCanvas.enabled = false;
+				Destroy (ob);
+			} 
+			else if (Input.GetButtonDown ("aButon")) 
+			{
+				Debug.Log ("Wrong Answer!");
+			} 
+			else if (Input.GetButtonDown ("bButton")) 
+			{
+				Debug.Log ("Wrong Answer!");
+			} 
+			else if (Input.GetButtonDown ("xButton")) 
+			{
+				Debug.Log ("Wrong Answer!");
+			}
+		}
 	}
 }
