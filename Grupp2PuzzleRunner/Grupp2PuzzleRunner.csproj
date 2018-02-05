@@ -251,32 +251,7 @@
       <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Graphs">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
-=======
-<<<<<<< HEAD
->>>>>>> 00f10d7618ccd4998d2fe0c2fdf08a284bffe6e4
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
->>>>>>> ba6f5cdb0cbf664e3f2c45bba14ef07635bd6ae9
-    </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
-    </Reference>
-<<<<<<< HEAD
-    <Reference Include="UnityEditor.WebGL.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
-=======
-    <Reference Include="UnityEditor.iOS.Extensions">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
-<<<<<<< HEAD
-=======
-=======
-      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
->>>>>>> 2bb8d8a0ed7e7fa006d5f377cc02e6aeedd64e22
->>>>>>> ba6f5cdb0cbf664e3f2c45bba14ef07635bd6ae9
->>>>>>> 00f10d7618ccd4998d2fe0c2fdf08a284bffe6e4
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
@@ -285,19 +260,7 @@
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-<<<<<<< HEAD
-      <HintPath>C:/Users/Tobias/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
-=======
-<<<<<<< HEAD
       <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-=======
-<<<<<<< HEAD
-      <HintPath>C:/Users/Tobias/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
-=======
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
->>>>>>> 2bb8d8a0ed7e7fa006d5f377cc02e6aeedd64e22
->>>>>>> ba6f5cdb0cbf664e3f2c45bba14ef07635bd6ae9
->>>>>>> 00f10d7618ccd4998d2fe0c2fdf08a284bffe6e4
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
@@ -315,27 +278,7 @@
       <HintPath>Library\UnityAssemblies\UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
       <HintPath>Library\UnityAssemblies\UnityEngine.StandardEvents.dll</HintPath>
-=======
-<<<<<<< HEAD
->>>>>>> 00f10d7618ccd4998d2fe0c2fdf08a284bffe6e4
-      <HintPath>C:/Users/Tobias/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-<<<<<<< HEAD
-=======
-=======
-      <HintPath>Library\UnityAssemblies\UnityEngine.StandardEvents.dll</HintPath>
->>>>>>> 2bb8d8a0ed7e7fa006d5f377cc02e6aeedd64e22
->>>>>>> ba6f5cdb0cbf664e3f2c45bba14ef07635bd6ae9
->>>>>>> 00f10d7618ccd4998d2fe0c2fdf08a284bffe6e4
     </Reference>
   </ItemGroup>
   <ItemGroup>

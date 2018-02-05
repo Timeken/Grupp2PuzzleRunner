@@ -49,7 +49,7 @@ public class PlayerControler : MonoBehaviour {
             if (Input.GetButtonDown(player.B()) && grounded) //LeftShift and B to crouch.
             {
                 ani.SetBool(crouchStateHash, true);
-                hitbox.size = new Vector2(hitbox.size.x, hitbox.size.y * .5f);
+                hitbox.size = new Vector2(hitbox.size.x, hitbox.size.y / 1.5f);
             }
 
             if (Input.GetButtonUp(player.B()) && grounded) //LeftShift and B to crouch.
@@ -63,7 +63,7 @@ public class PlayerControler : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag.Equals("Ground"))
         {
             grounded = true;
             ani.SetBool(runStateHash, true);
@@ -72,7 +72,7 @@ public class PlayerControler : MonoBehaviour {
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag.Equals("Ground"))
         {
             grounded = false;
         }
@@ -111,6 +111,5 @@ public class PlayerControler : MonoBehaviour {
     {
         ani.SetBool(runStateHash, true);
         yield return new WaitForSeconds(1);
-        print("test2");
     }
 }
