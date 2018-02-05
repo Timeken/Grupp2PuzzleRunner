@@ -1270,6 +1270,28 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Test
+--- !u!1 &980656324 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1510821115619386, guid: e60998611d44d1442893292e358e4784,
+    type: 2}
+  m_PrefabInternal: {fileID: 1760287428}
+--- !u!95 &980656325
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 980656324}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1739741976de7334c9873505923dc606, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1041418243
 GameObject:
   m_ObjectHideFlags: 0
