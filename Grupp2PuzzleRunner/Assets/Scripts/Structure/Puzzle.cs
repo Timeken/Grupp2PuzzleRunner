@@ -56,6 +56,7 @@ public abstract class Puzzle : Interactable {
         //Starta spelaren... player.GetComponent<PlayerController>().Start();
         if (secondsOpen == 0)
         {
+            StopDoing(playerNumber);
             players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
         } else
         {

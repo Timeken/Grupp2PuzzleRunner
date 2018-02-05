@@ -9,6 +9,7 @@ public class PlayerControler : MonoBehaviour {
     float speed;
     [SerializeField]
     float jumpSpeed;
+    bool grounded;
 
     private Rigidbody2D rigidbody2D;
     private Animator ani;
@@ -17,68 +18,63 @@ public class PlayerControler : MonoBehaviour {
     int crouchStateHash = Animator.StringToHash("IsCrouched");
 
     private Player player;
-    private bool PlayerStop;
+    private bool playerStop;
 
     void Start () {
         speed = defaultSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
         ani = GetComponentInChildren<Animator>();
-        PlayerStop = true;
+        playerStop = false;
         player = GetComponent<Player>();
     }
-	
-	void Update () {
-        if (PlayerStop)
+
+    void Update()
+    {
+        if (!playerStop)
         {
             //----------------------------------------RunRight------------------------------------
             transform.Translate(Vector2.right * Time.deltaTime * speed);
             ani.SetTrigger(runStateHash);
-
-            //TODO Add run animation
             //----------------------------------------Jump------------------------------------
-            if (Input.GetButtonDown(player.A()) && gameObject.transform.position.y < 0 && PlayerStop) //Space and A to jump.
+            if (Input.GetButtonDown(player.A()) && grounded) //Space and A to jump.
             {
-                //TODO Add jump animation
+                grounded = false;
                 ani.SetTrigger(jumpHash);
-                print("jump");
                 rigidbody2D.AddForce(Vector2.up * jumpSpeed);
             }
-
-            //----------------------------------------Duck------------------------------------
-            if (Input.GetButtonDown(player.B()) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to duck.
+            //----------------------------------------Crouch------------------------------------
+            if (Input.GetButtonDown(player.B()) && grounded) //LeftShift and B to crouch.
             {
-                print("duck");
-                //TODO Add duck animation            
+                ani.SetBool(crouchStateHash, true);
             }
 
-        }
-        //----------------------------------------Jump------------------------------------
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && gameObject.transform.position.y < 0 && PlayerStop ||
-            Input.GetKeyDown(KeyCode.Space) && gameObject.transform.position.y < 0 && PlayerStop) //Space and A to jump.
-        {
-            ani.SetTrigger(jumpHash);
-            rigidbody2D.AddForce(Vector2.up * jumpSpeed);
-        }
-        //----------------------------------------Crouch------------------------------------
-        if (Input.GetKey(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop  ||
-            Input.GetKey(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop ) //LeftShift and B to crouch.
-        {
-            ani.SetBool(crouchStateHash, true);       
-        }
-
-        if (Input.GetKeyUp(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop ||
-            Input.GetKeyUp(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to crouch.
-        {
-            print("crouch");
-            ani.SetTrigger(crouchStateHash);        
-
-            ani.SetBool(crouchStateHash, false);
+            if (Input.GetButtonUp(player.B()) && grounded) //LeftShift and B to crouch.
+            {
+                ani.SetTrigger(crouchStateHash);
+                ani.SetBool(crouchStateHash, false);
+            }
         }
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            grounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            grounded = false;
+        }
+    }
+
     public void SetPlayerStartStop()
     {
-        PlayerStop =! PlayerStop;
+        playerStop =! playerStop;
     }
     public void SetSpeed(float speed = 0)
     {

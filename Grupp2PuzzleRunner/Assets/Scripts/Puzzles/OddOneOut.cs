@@ -11,14 +11,16 @@ public class OddOneOut : Puzzle {
     private Text[] answerFields;
     [SerializeField]
     private string[] answers;
-    [SerializeField]
     private int[] rightAnswer;
-    private float wrongTime;
+    private float[] wrongTime;
+    [SerializeField]
+    private GameObject[] wrongText;
 
     void Start()
     {
         players = GameObject.FindObjectsOfType<Player>();
         rightAnswer = new int[2];
+        wrongTime = new float[2];
     }
     private void Update()
     {
@@ -36,7 +38,7 @@ public class OddOneOut : Puzzle {
 
     private void PuzzleUpdate(int playerNumber)
     {
-        if (Time.time > wrongTime)
+        if (Time.time > wrongTime[playerNumber])
         {
             if (Input.GetButtonDown(players[playerNumber].A()))
             {
@@ -54,6 +56,11 @@ public class OddOneOut : Puzzle {
             {
                 CheckAnswer(0, playerNumber);
             }
+        } else if (Time.time > wrongTime[playerNumber] -1 && wrongText[playerNumber].active == true)
+        {
+            wrongText[playerNumber].SetActive(false);
+            ResetFields(playerNumber);
+            SetAnswers(playerNumber);
         }
     }
 
@@ -72,7 +79,7 @@ public class OddOneOut : Puzzle {
             {
                 randomSlot = Random.Range(0, 4);
             }
-            answerFields[playerNumber * 4 + randomSlot].text = answers[i + rightAnswer[playerNumber]];
+            answerFields[playerNumber * 4 + randomSlot].text = answers[i + rightAnswer[playerNumber]*4];
         }
     }
     private void CheckAnswer(int a, int playerNumber)
@@ -87,9 +94,8 @@ public class OddOneOut : Puzzle {
     }
     private void WrongAnswer(int playerNumber)
     {
-        wrongTime = Time.time + 2;
-        ResetFields(playerNumber);
-        SetAnswers(playerNumber);
+        wrongText[playerNumber].SetActive(true);
+        wrongTime[playerNumber] = Time.time + 5;
     }
     private void ResetFields(int playerNumber)
     {
