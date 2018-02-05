@@ -25,4 +25,9 @@ public class SceneChanger : MonoBehaviour {
     {
         SceneManager.LoadScene("PreAlphaEarlyAcces");
     }
+
+    public void LevelSelect()
+    {
+        SceneManager.LoadScene("LevelSelect");
+    }
 }
