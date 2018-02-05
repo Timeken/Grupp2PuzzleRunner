@@ -24,14 +24,33 @@ public class PlayerControler : MonoBehaviour {
         rigidbody2D = GetComponent<Rigidbody2D>();
         ani = GetComponentInChildren<Animator>();
         PlayerStop = true;
+        player = GetComponent<Player>();
     }
 	
 	void Update () {
-        //----------------------------------------RunRight------------------------------------
         if (PlayerStop)
         {
+            //----------------------------------------RunRight------------------------------------
             transform.Translate(Vector2.right * Time.deltaTime * speed);
             ani.SetTrigger(runStateHash);
+
+            //TODO Add run animation
+            //----------------------------------------Jump------------------------------------
+            if (Input.GetButtonDown(player.A()) && gameObject.transform.position.y < 0 && PlayerStop) //Space and A to jump.
+            {
+                //TODO Add jump animation
+                ani.SetTrigger(jumpHash);
+                print("jump");
+                rigidbody2D.AddForce(Vector2.up * jumpSpeed);
+            }
+
+            //----------------------------------------Duck------------------------------------
+            if (Input.GetButtonDown(player.B()) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to duck.
+            {
+                print("duck");
+                //TODO Add duck animation            
+            }
+
         }
         //----------------------------------------Jump------------------------------------
         if (Input.GetKeyDown(KeyCode.Joystick1Button0) && gameObject.transform.position.y < 0 && PlayerStop ||
@@ -50,6 +69,9 @@ public class PlayerControler : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop ||
             Input.GetKeyUp(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to crouch.
         {
+            print("crouch");
+            ani.SetTrigger(crouchStateHash);        
+
             ani.SetBool(crouchStateHash, false);
         }
     }
