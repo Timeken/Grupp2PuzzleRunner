@@ -12,45 +12,31 @@ public class PlayerControler : MonoBehaviour {
 
     private Rigidbody2D rigidbody2D;
     private Animator ani;
+    private BoxCollider2D hitbox;
     int jumpHash = Animator.StringToHash("Jump");
     int runStateHash = Animator.StringToHash("Run");
+    int idleStateHash = Animator.StringToHash("Idle");
     int crouchStateHash = Animator.StringToHash("IsCrouched");
 
     private Player player;
     private bool PlayerStop;
+    bool crouch;
 
     void Start () {
         speed = defaultSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
+        hitbox = GetComponentInChildren<BoxCollider2D>();
         ani = GetComponentInChildren<Animator>();
         PlayerStop = true;
-        player = GetComponent<Player>();
+        crouch = true;
     }
 	
 	void Update () {
+        //----------------------------------------RunRight------------------------------------
         if (PlayerStop)
         {
-            //----------------------------------------RunRight------------------------------------
             transform.Translate(Vector2.right * Time.deltaTime * speed);
-            ani.SetTrigger(runStateHash);
-
-            //TODO Add run animation
-            //----------------------------------------Jump------------------------------------
-            if (Input.GetButtonDown(player.A()) && gameObject.transform.position.y < 0 && PlayerStop) //Space and A to jump.
-            {
-                //TODO Add jump animation
-                ani.SetTrigger(jumpHash);
-                print("jump");
-                rigidbody2D.AddForce(Vector2.up * jumpSpeed);
-            }
-
-            //----------------------------------------Duck------------------------------------
-            if (Input.GetButtonDown(player.B()) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to duck.
-            {
-                print("duck");
-                //TODO Add duck animation            
-            }
-
+            ani.SetBool(runStateHash, true);
         }
         //----------------------------------------Jump------------------------------------
         if (Input.GetKeyDown(KeyCode.Joystick1Button0) && gameObject.transform.position.y < 0 && PlayerStop ||
@@ -60,25 +46,40 @@ public class PlayerControler : MonoBehaviour {
             rigidbody2D.AddForce(Vector2.up * jumpSpeed);
         }
         //----------------------------------------Crouch------------------------------------
-        if (Input.GetKey(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop  ||
-            Input.GetKey(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop ) //LeftShift and B to crouch.
+        if (Input.GetKey(KeyCode.Joystick1Button1) && PlayerStop  ||
+            Input.GetKey(KeyCode.LeftShift) && PlayerStop ) //LeftShift and B to crouch.
         {
+            if (crouch)
+            {
+                hitbox.size = new Vector2(hitbox.size.x, hitbox.size.y / 1.5f);
+                crouch = false;
+            }
             ani.SetBool(crouchStateHash, true);       
         }
 
-        if (Input.GetKeyUp(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop ||
-            Input.GetKeyUp(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to crouch.
+        if (Input.GetKeyUp(KeyCode.Joystick1Button1) && PlayerStop ||
+            Input.GetKeyUp(KeyCode.LeftShift) && PlayerStop) //LeftShift and B to crouch.
         {
-            print("crouch");
-            ani.SetTrigger(crouchStateHash);        
-
+            if (!crouch)
+            {
+                hitbox.size = new Vector2(hitbox.size.x, hitbox.size.y * 1.5f);
+                crouch = true;
+            }
             ani.SetBool(crouchStateHash, false);
         }
     }
     
     public void SetPlayerStartStop()
-    {
+    {    
         PlayerStop =! PlayerStop;
+        ani.SetTrigger(idleStateHash);
+        ani.SetBool(runStateHash, false);
+        if (PlayerStop)
+        {
+            StartCoroutine(Delay());
+        }
+        StopCoroutine(Delay());
+        print(PlayerStop);
     }
     public void SetSpeed(float speed = 0)
     {
@@ -96,5 +97,11 @@ public class PlayerControler : MonoBehaviour {
         if (speed != defaultSpeed)
             return true;
         return false;
+    }
+    IEnumerator Delay()
+    {
+        ani.SetBool(runStateHash, true);
+        yield return new WaitForSeconds(1);
+        print("test2");
     }
 }
