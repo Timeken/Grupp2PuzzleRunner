@@ -23,6 +23,8 @@ public class PlayerControler : MonoBehaviour {
     private bool playerStop;
     bool crouch;
 
+    float hitboxY;
+
     void Start () {
         speed = defaultSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -30,6 +32,7 @@ public class PlayerControler : MonoBehaviour {
         ani = GetComponentInChildren<Animator>();
         playerStop = false;
         player = GetComponent<Player>();
+        hitboxY = hitbox.size.y;
     }
 	
 	void Update () {
@@ -49,14 +52,14 @@ public class PlayerControler : MonoBehaviour {
             if (Input.GetButtonDown(player.B()) && grounded) //LeftShift and B to crouch.
             {
                 ani.SetBool(crouchStateHash, true);
-                hitbox.size = new Vector2(hitbox.size.x, hitbox.size.y / 1.5f);
+                hitbox.size = new Vector2(hitbox.size.x, hitboxY / 1.5f);
             }
 
             if (Input.GetButtonUp(player.B()) && grounded) //LeftShift and B to crouch.
             {
                 ani.SetTrigger(crouchStateHash);
                 ani.SetBool(crouchStateHash, false);
-                hitbox.size = new Vector2(hitbox.size.x, hitbox.size.y * 1.5f);
+                hitbox.size = new Vector2(hitbox.size.x, hitboxY);
             }
         }
     }
