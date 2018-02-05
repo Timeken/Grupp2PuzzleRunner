@@ -86,12 +86,12 @@ public class PlayerControler : MonoBehaviour {
         playerStop =! playerStop;
         ani.SetTrigger(idleStateHash);
         ani.SetBool(runStateHash, false);
-        if (playerStop)
+        if (!playerStop)
         {
             StartCoroutine(Delay());
         }
         StopCoroutine(Delay());
-        print(playerStop);
+        print("running" + playerStop);
     }
     public void SetSpeed(float speed = 0)
     {
