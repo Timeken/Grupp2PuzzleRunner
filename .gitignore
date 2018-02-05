@@ -33,3 +33,4 @@ ehthumbs.db
 Thumbs.db
 Grupp2PuzzleRunner/.vs/Grupp2PuzzleRunner/v15/sqlite3/storage.ide
 Grupp2PuzzleRunner/ProjectSettings/InputManager.asset
+*.controller
