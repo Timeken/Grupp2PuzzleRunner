@@ -14,7 +14,7 @@ public abstract class Shortcut : Interactable {
     {
         if (!used)
         {
-            if (!longcut && !InTheLead(playerNumber) && DistanceBetweenPlayers() > minDistance || longcut && InTheLead(playerNumber) && DistanceBetweenPlayers() > minDistance)
+            if (minDistance == 0 || !longcut && !InTheLead(playerNumber) && DistanceBetweenPlayers() > minDistance || longcut && InTheLead(playerNumber) && DistanceBetweenPlayers() > minDistance)
             {
                 used = true;
                 StartShortcut(playerNumber);
