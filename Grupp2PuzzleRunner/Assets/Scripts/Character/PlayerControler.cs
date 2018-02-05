@@ -12,6 +12,7 @@ public class PlayerControler : MonoBehaviour {
 
     private Rigidbody2D rigidbody2D;
     private Animator ani;
+    private BoxCollider2D hitbox;
     int jumpHash = Animator.StringToHash("Jump");
     int runStateHash = Animator.StringToHash("Run");
     int idleStateHash = Animator.StringToHash("Idle");
@@ -19,12 +20,15 @@ public class PlayerControler : MonoBehaviour {
 
     private Player player;
     private bool PlayerStop;
+    bool crouch;
 
     void Start () {
         speed = defaultSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
+        hitbox = GetComponentInChildren<BoxCollider2D>();
         ani = GetComponentInChildren<Animator>();
         PlayerStop = true;
+        crouch = true;
     }
 	
 	void Update () {
@@ -42,15 +46,25 @@ public class PlayerControler : MonoBehaviour {
             rigidbody2D.AddForce(Vector2.up * jumpSpeed);
         }
         //----------------------------------------Crouch------------------------------------
-        if (Input.GetKey(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop  ||
-            Input.GetKey(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop ) //LeftShift and B to crouch.
+        if (Input.GetKey(KeyCode.Joystick1Button1) && PlayerStop  ||
+            Input.GetKey(KeyCode.LeftShift) && PlayerStop ) //LeftShift and B to crouch.
         {
+            if (crouch)
+            {
+                hitbox.size = new Vector2(hitbox.size.x, hitbox.size.y / 1.5f);
+                crouch = false;
+            }
             ani.SetBool(crouchStateHash, true);       
         }
 
-        if (Input.GetKeyUp(KeyCode.Joystick1Button1) && gameObject.transform.position.y < 0 && PlayerStop ||
-            Input.GetKeyUp(KeyCode.LeftShift) && gameObject.transform.position.y < 0 && PlayerStop) //LeftShift and B to crouch.
+        if (Input.GetKeyUp(KeyCode.Joystick1Button1) && PlayerStop ||
+            Input.GetKeyUp(KeyCode.LeftShift) && PlayerStop) //LeftShift and B to crouch.
         {
+            if (!crouch)
+            {
+                hitbox.size = new Vector2(hitbox.size.x, hitbox.size.y * 1.5f);
+                crouch = true;
+            }
             ani.SetBool(crouchStateHash, false);
         }
     }
