@@ -14,6 +14,7 @@ public class PlayerControler : MonoBehaviour {
     private Animator ani;
     int jumpHash = Animator.StringToHash("Jump");
     int runStateHash = Animator.StringToHash("Run");
+    int idleStateHash = Animator.StringToHash("Idle");
     int crouchStateHash = Animator.StringToHash("IsCrouched");
 
     private Player player;
@@ -31,7 +32,7 @@ public class PlayerControler : MonoBehaviour {
         if (PlayerStop)
         {
             transform.Translate(Vector2.right * Time.deltaTime * speed);
-            ani.SetTrigger(runStateHash);
+            ani.SetBool(runStateHash, true);
         }
         //----------------------------------------Jump------------------------------------
         if (Input.GetKeyDown(KeyCode.Joystick1Button0) && gameObject.transform.position.y < 0 && PlayerStop ||
@@ -55,8 +56,16 @@ public class PlayerControler : MonoBehaviour {
     }
     
     public void SetPlayerStartStop()
-    {
+    {    
         PlayerStop =! PlayerStop;
+        ani.SetTrigger(idleStateHash);
+        ani.SetBool(runStateHash, false);
+        if (PlayerStop)
+        {
+            StartCoroutine(Delay());
+        }
+        StopCoroutine(Delay());
+        print(PlayerStop);
     }
     public void SetSpeed(float speed = 0)
     {
@@ -74,5 +83,11 @@ public class PlayerControler : MonoBehaviour {
         if (speed != defaultSpeed)
             return true;
         return false;
+    }
+    IEnumerator Delay()
+    {
+        ani.SetBool(runStateHash, true);
+        yield return new WaitForSeconds(1);
+        print("test2");
     }
 }
