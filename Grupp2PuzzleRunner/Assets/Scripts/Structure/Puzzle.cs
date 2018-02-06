@@ -21,7 +21,7 @@ public abstract class Puzzle : Interactable {
             {
                 if (!AlreadyCompleted(playerNumber))
                 {
-                    players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
+                    players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop(true);
                     Debug.Log("Activating");
                     Doing(playerNumber);
                     StartPuzzle(playerNumber);
@@ -57,7 +57,7 @@ public abstract class Puzzle : Interactable {
         if (secondsOpen == 0)
         {
             StopDoing(playerNumber);
-            players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
+            players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop(false);
         } else
         {
             for (int i = 0; i < playersDoing.Length; i++)
@@ -68,7 +68,7 @@ public abstract class Puzzle : Interactable {
                     {
                         i--;
                         StopDoing(j);
-                        players[j].GetComponent<PlayerControler>().SetPlayerStartStop();
+                        players[j].GetComponent<PlayerControler>().SetPlayerStartStop(false);
                         break;
                     }
                 }

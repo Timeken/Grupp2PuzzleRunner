@@ -14,7 +14,7 @@ public class Taxi : Shortcut {
     }
     private IEnumerator AnimateTaxi(int playerNumber)
     {
-        players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
+        players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop(true);
         Transform taxi = transform.GetChild(0);
         taxi.transform.localPosition = Vector3.right * -20;
         transform.GetComponentInChildren<SpriteRenderer>().enabled = true;
@@ -27,7 +27,7 @@ public class Taxi : Shortcut {
         StartCoroutine(players[playerNumber].HideCharacter(duration + .2f));
         yield return new WaitForSeconds(.2f);
         StartCoroutine(players[playerNumber].ChangeSpeed(speed, duration));
-        players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
+        players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop(false);
         float driveTime = Time.time + duration;
         while (Time.time < driveTime)
         {

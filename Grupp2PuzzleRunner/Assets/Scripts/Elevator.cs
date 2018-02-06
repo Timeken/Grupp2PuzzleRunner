@@ -15,7 +15,7 @@ public class Elevator : Shortcut {
     protected override void StartShortcut(int playerNumber)
     {
         player = players[playerNumber];
-        player.GetComponent<PlayerControler>().SetPlayerStartStop();
+        player.GetComponent<PlayerControler>().SetPlayerStartStop(true);
         player.GetComponent<Rigidbody2D>().gravityScale = 0;
         player.transform.parent = transform;
         col.isTrigger = true;
@@ -41,8 +41,9 @@ public class Elevator : Shortcut {
             yield return new WaitForEndOfFrame();
         }
         transform.position = endPosition;
-        players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
+        players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop(false);
         player.GetComponent<Rigidbody2D>().gravityScale = 1;
         player.transform.parent = null;
+        col.isTrigger = false;
     }
 }

@@ -26,7 +26,7 @@ public class PlayerControler : MonoBehaviour {
     void Start () {
         speed = defaultSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
-        hitbox = GetComponentInChildren<BoxCollider2D>();
+        hitbox = GetComponent<BoxCollider2D>();
         ani = GetComponentInChildren<Animator>();
         playerStop = false;
         player = GetComponent<Player>();
@@ -37,7 +37,6 @@ public class PlayerControler : MonoBehaviour {
         if (!playerStop)
         {
             transform.Translate(Vector2.right * Time.deltaTime * speed);
-            ani.SetTrigger(runStateHash);
             //----------------------------------------Jump------------------------------------
             if (Input.GetButtonDown(player.A()) && grounded) //Space and A to jump.
             {
@@ -46,17 +45,16 @@ public class PlayerControler : MonoBehaviour {
                 rigidbody2D.AddForce(Vector2.up * jumpSpeed);
             }
             //----------------------------------------Crouch------------------------------------
-            if (Input.GetButtonDown(player.B()) && grounded) //LeftShift and B to crouch.
+            if (Input.GetButtonDown(player.B())) //LeftShift and B to crouch.
             {
                 ani.SetBool(crouchStateHash, true);
-                hitbox.size = new Vector2(hitbox.size.x, hitbox.size.y * .5f);
+                hitbox.size = new Vector2(hitbox.size.x, 1);
             }
 
-            if (Input.GetButtonUp(player.B()) && grounded) //LeftShift and B to crouch.
+            if (Input.GetButtonUp(player.B())) //LeftShift and B to crouch.
             {
-                ani.SetTrigger(crouchStateHash);
                 ani.SetBool(crouchStateHash, false);
-                hitbox.size = new Vector2(hitbox.size.x, hitbox.size.y * 1.5f);
+                hitbox.size = new Vector2(hitbox.size.x, 2);
             }
         }
     }
@@ -66,7 +64,6 @@ public class PlayerControler : MonoBehaviour {
         if (collision.gameObject.tag == "Ground")
         {
             grounded = true;
-            ani.SetBool(runStateHash, true);
         }
     }
 
@@ -78,17 +75,18 @@ public class PlayerControler : MonoBehaviour {
         }
     }
 
-    public void SetPlayerStartStop()
+    public void SetPlayerStartStop(bool f)
     {
-        playerStop =! playerStop;
-        ani.SetTrigger(idleStateHash);
-        ani.SetBool(runStateHash, false);
-        if (playerStop)
+        playerStop = f;
+        if (f)
         {
-            StartCoroutine(Delay());
+            ani.SetBool("Idle", true);
+            ani.SetBool("Run", false);
+        } else
+        {
+            ani.SetBool("Idle", false);
+            ani.SetBool("Run", true);
         }
-        StopCoroutine(Delay());
-        print(playerStop);
     }
     public void SetSpeed(float speed = 0)
     {
@@ -106,11 +104,5 @@ public class PlayerControler : MonoBehaviour {
         if (speed != defaultSpeed)
             return true;
         return false;
-    }
-    IEnumerator Delay()
-    {
-        ani.SetBool(runStateHash, true);
-        yield return new WaitForSeconds(1);
-        print("test2");
     }
 }

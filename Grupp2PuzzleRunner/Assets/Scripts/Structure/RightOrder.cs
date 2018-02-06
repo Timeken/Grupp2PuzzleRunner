@@ -49,7 +49,7 @@ public class RightOrder : MonoBehaviour {
 
         if (rightTrys == numbersRequierd)
         {
-            player.GetComponent<PlayerControler>().SetPlayerStartStop();
+            player.GetComponent<PlayerControler>().SetPlayerStartStop(false);
             Destroy(gameObject);
         }
 
@@ -117,7 +117,7 @@ public class RightOrder : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.GetComponent<PlayerControler>().SetPlayerStartStop();
+        collision.gameObject.GetComponent<PlayerControler>().SetPlayerStartStop(true);
         player = collision.gameObject;
     }
 }

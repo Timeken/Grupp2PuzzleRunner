@@ -22,10 +22,9 @@ public class CountingSheep : Puzzle {
 	protected override void StartPuzzle(int playerNumber)
     {
         StopDoing(playerNumber);
-        players[playerNumber].GetComponent<PlayerControler>().SetPlayerStartStop();
         for (int i = 0; i < players.Length; i++)
         {
-            players[i].GetComponent<PlayerControler>().SetPlayerStartStop();
+            players[i].GetComponent<PlayerControler>().SetPlayerStartStop(true);
             Doing(i);
         }
         StartCoroutine(CreateSheep());
