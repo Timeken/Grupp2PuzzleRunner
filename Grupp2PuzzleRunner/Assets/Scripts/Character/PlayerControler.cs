@@ -13,11 +13,15 @@ public class PlayerControler : MonoBehaviour {
 
     private Rigidbody2D rigidbody2D;
     private Animator ani;
+
+	[SerializeField]
     private BoxCollider2D hitbox;
     int jumpHash = Animator.StringToHash("Jump");
     int runStateHash = Animator.StringToHash("Run");
     int idleStateHash = Animator.StringToHash("Idle");
     int crouchStateHash = Animator.StringToHash("IsCrouched");
+
+    float hitboxY;
 
     private Player player;
     private bool playerStop;
@@ -26,37 +30,40 @@ public class PlayerControler : MonoBehaviour {
     void Start () {
         speed = defaultSpeed;
         rigidbody2D = GetComponent<Rigidbody2D>();
-        hitbox = GetComponent<BoxCollider2D>();
         ani = GetComponentInChildren<Animator>();
         playerStop = false;
         player = GetComponent<Player>();
+        hitboxY = hitbox.size.y;
     }
-	
-	void Update () {
-        //----------------------------------------RunRight------------------------------------
-        if (!playerStop)
-        {
-            transform.Translate(Vector2.right * Time.deltaTime * speed);
-            //----------------------------------------Jump------------------------------------
-            if (Input.GetButtonDown(player.A()) && grounded) //Space and A to jump.
-            {
-                grounded = false;
-                ani.SetTrigger(jumpHash);
-                rigidbody2D.AddForce(Vector2.up * jumpSpeed);
-            }
-            //----------------------------------------Crouch------------------------------------
-            if (Input.GetButtonDown(player.B())) //LeftShift and B to crouch.
-            {
-                ani.SetBool(crouchStateHash, true);
-                hitbox.size = new Vector2(hitbox.size.x, 1);
-            }
 
-            if (Input.GetButtonUp(player.B())) //LeftShift and B to crouch.
-            {
-                ani.SetBool(crouchStateHash, false);
-                hitbox.size = new Vector2(hitbox.size.x, 2);
-            }
-        }
+    void Update()
+    {
+        //----------------------------------------RunRight------------------------------------
+		if (!playerStop) {
+			transform.Translate (Vector2.right * Time.deltaTime * speed);
+			ani.SetBool (runStateHash, true);
+			//----------------------------------------Jump------------------------------------
+			if (Input.GetButtonDown (player.A ()) && grounded) { //Space and A to jump.
+				grounded = false;
+				ani.SetTrigger (jumpHash);
+				rigidbody2D.AddForce (Vector2.up * jumpSpeed);
+			}
+			//----------------------------------------Crouch------------------------------------
+			if (Input.GetButtonDown (player.B ()) && grounded) { //LeftShift and B to crouch.
+				Debug.Log ("liten");
+				crouch = true;
+				ani.SetBool (crouchStateHash, true);
+				hitbox.size = new Vector2 (hitbox.size.x, hitboxY / 1.5f);
+			}
+		}
+		if (Input.GetButtonUp(player.B()) && crouch) //LeftShift and B to crouch.
+		{
+			Debug.Log ("stor");
+			crouch = false;
+			ani.SetTrigger(crouchStateHash);
+			ani.SetBool(crouchStateHash, false);
+			hitbox.size = new Vector2(hitbox.size.x, hitboxY);
+		}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -80,12 +87,12 @@ public class PlayerControler : MonoBehaviour {
         playerStop = f;
         if (f)
         {
-            ani.SetBool("Idle", true);
-            ani.SetBool("Run", false);
+            ani.SetBool(idleStateHash, true);
+            ani.SetBool(runStateHash, false);
         } else
         {
-            ani.SetBool("Idle", false);
-            ani.SetBool("Run", true);
+            ani.SetBool(idleStateHash, false);
+            ani.SetBool(runStateHash, true);
         }
     }
     public void SetSpeed(float speed = 0)
