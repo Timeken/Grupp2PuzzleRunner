@@ -14,7 +14,7 @@ public abstract class Interactable : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("OnTriggerEnter");
-        if (other.tag == "Player" && !other.GetComponent<PlayerControler>().Shortcut())
+        if (other.tag == "Player" && !other.GetComponentInParent<PlayerControler>().Shortcut())
         {
             for (int i = 0; i < players.Length; i++)
             {
