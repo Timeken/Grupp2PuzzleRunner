@@ -17,13 +17,17 @@ public class RightOrder : MonoBehaviour {
     GameObject[] pictureArray;
 
     GameObject player;
+    private Player playerCon;
 
-	void Start ()
+    bool playerHit = false;
+
+    void Start ()
     {
-        pictureArray[0].SetActive(false);
-        pictureArray[1].SetActive(false);
-        pictureArray[2].SetActive(false);
-        pictureArray[3].SetActive(false);
+        playerCon = GetComponent<Player>();
+        pictureArray[0].SetActive(false);//a
+        pictureArray[1].SetActive(false);//b
+        pictureArray[2].SetActive(false);//y
+        pictureArray[3].SetActive(false);//x
     }
 	
 	void Update ()
@@ -53,42 +57,42 @@ public class RightOrder : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && number[rightTrys] == 0 && !loop)
+        if (Input.GetButtonDown(playerCon.A()) && number[rightTrys] == 0 && !loop)
         {
             rightTrys++;
             //TODO play the "correct" sound
         }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button0) && number[rightTrys] != 0 && !loop)
+        else if (Input.GetButtonDown(playerCon.A()) && number[rightTrys] != 0 && !loop)
         {
             retry = true;
             //TODO play the "wrong" sound
         }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button1) && number[rightTrys] == 1 && !loop)
+        if (Input.GetButtonDown(playerCon.B()) && number[rightTrys] == 1 && !loop)
         {
             rightTrys++;
             //TODO play the "correct" sound
         }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button1) && number[rightTrys] != 1 && !loop)
+        else if (Input.GetButtonDown(playerCon.B()) && number[rightTrys] != 1 && !loop)
         {
             retry = true;
             //TODO play the "wrong" sound
         }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2) && number[rightTrys] == 2 && !loop)
+        if (Input.GetButtonDown(playerCon.Y()) && number[rightTrys] == 2 && !loop)
         {
             rightTrys++;
             //TODO play the "correct" sound
         }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button2) && number[rightTrys] != 2 && !loop)
+        else if (Input.GetButtonDown(playerCon.Y()) && number[rightTrys] != 2 && !loop)
         {
             retry = true;
             //TODO play the "wrong" sound
         }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button3) && number[rightTrys] == 3 && !loop)
+        if (Input.GetButtonDown(playerCon.X()) && number[rightTrys] == 3 && !loop)
         {
             rightTrys++;
             //TODO play the "correct" sound
         }
-        else if (Input.GetKeyDown(KeyCode.Joystick1Button3) && number[rightTrys] != 3 && !loop)
+        else if (Input.GetButtonDown(playerCon.X()) && number[rightTrys] != 3 && !loop)
         {
             retry = true;
             //TODO play the "wrong" sound
@@ -118,6 +122,7 @@ public class RightOrder : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collision.gameObject.GetComponent<PlayerControler>().SetPlayerStartStop();
+        playerCon = collision.gameObject.GetComponent<Player>();
         player = collision.gameObject;
     }
 }
