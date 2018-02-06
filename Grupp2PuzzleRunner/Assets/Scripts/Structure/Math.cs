@@ -46,29 +46,27 @@ public class Math : MonoBehaviour {
 	{
 		if (myCanvas.enabled == true) 
 		{
-			if (Input.GetButtonDown ("yButton")) 
+			if (Input.GetButtonDown ("Y")) 
 			{
 				b1 = true;
 				b2 = false;
 				myCanvas.enabled = false;
 				Destroy (ob);
 			} 
-			else if (Input.GetButtonDown ("xButton")) 
+			else if (Input.GetButtonDown ("X")) 
 			{
 				b2 = true;
 				b1 = false;
 			} 
-			else if (Input.GetButtonDown ("bButton")) 
+			else if (Input.GetButtonDown ("B")) 
 			{
 				b2 = true;
 				b1 = false;
-				Debug.Log ("Wrong Answer!");
 			} 
-			else if (Input.GetButtonDown ("aButton")) 
+			else if (Input.GetButtonDown ("A")) 
 			{
 				b2 = true;
 				b1 = false;
-				Debug.Log ("Wrong Answer!");
 			}
 		}
 	}
