@@ -11,7 +11,7 @@ public class Math : MonoBehaviour {
 	bool t = false;
 	bool b1 = false;
 	bool b2 = false;
-	// Use this for initialization
+
 	void Start () 
 	{ 
 
@@ -33,7 +33,6 @@ public class Math : MonoBehaviour {
 	{
 		t = true;
 		myCanvas.enabled = true;
-		//Debug.Log ("Canvas");
 	}
 	void OnTriggerExit ()
 	{
@@ -41,7 +40,6 @@ public class Math : MonoBehaviour {
 		b1 = false;
 		b2 = false;
 			myCanvas.enabled = false;
-			//Debug.Log("No Canvas");
 	}
 
 	void Update()
@@ -52,7 +50,6 @@ public class Math : MonoBehaviour {
 			{
 				b1 = true;
 				b2 = false;
-				//Debug.Log ("Right Answer!");
 				myCanvas.enabled = false;
 				Destroy (ob);
 			} 
@@ -60,14 +57,17 @@ public class Math : MonoBehaviour {
 			{
 				b2 = true;
 				b1 = false;
-				//Debug.Log ("Wrong Answer!");
 			} 
 			else if (Input.GetButtonDown ("bButton")) 
 			{
+				b2 = true;
+				b1 = false;
 				Debug.Log ("Wrong Answer!");
 			} 
 			else if (Input.GetButtonDown ("aButton")) 
 			{
+				b2 = true;
+				b1 = false;
 				Debug.Log ("Wrong Answer!");
 			}
 		}
