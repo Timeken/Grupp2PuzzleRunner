@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 50356150798506766}
   - component: {fileID: 114930950142600344}
   - component: {fileID: 114780822373286218}
+  - component: {fileID: 61076025332633418}
   m_Layer: 10
   m_Name: Player_Female (player 2)
   m_TagString: Player
@@ -517,7 +518,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1210136078740122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.8, y: -1.2, z: 0}
+  m_LocalPosition: {x: 14.41, y: 1.0365286, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4858682554555024}
@@ -636,7 +637,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 4294966783
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -693,6 +694,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8, y: 20}
   m_EdgeRadius: 0
+--- !u!61 &61076025332633418
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1755966494464264}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.7, y: 0.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2}
+  m_EdgeRadius: 0
 --- !u!95 &95482343416462770
 Animator:
   serializedVersion: 3
@@ -742,6 +768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpeed: 5
   jumpSpeed: 300
+  hitbox: {fileID: 61004814344456894}
 --- !u!124 &124935900386889582
 Behaviour:
   m_ObjectHideFlags: 1
