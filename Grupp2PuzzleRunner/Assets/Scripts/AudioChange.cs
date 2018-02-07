@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class AudioChange : MonoBehaviour {
 
     public Slider volumeSlider;
-    public AudioSource volumeAudio;
+    public AudioSource Sound;
     public void OnValueChange()
     {
-        volumeAudio.volume = volumeSlider.value;
-
+        Sound.volume = volumeSlider.value;
+        PlayerPrefs.SetFloat("volume", volumeSlider.value);
     }
 }
