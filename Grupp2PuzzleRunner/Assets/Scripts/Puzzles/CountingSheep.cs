@@ -16,13 +16,19 @@ public class CountingSheep : Puzzle {
     [SerializeField]
     private Text[] text;
     [SerializeField]
+<<<<<<< HEAD
     private GameObject[] instructions;
+=======
+    private AudioClip sheepSound;
+
+>>>>>>> sound
     private int[] guess = new int[2];
     private int[] amountOfSheep = new int[2];
     private bool playerIsReady;
 
 	protected override void StartPuzzle(int playerNumber)
     {
+        GetComponent<AudioSource>().clip = sheepSound;
         StopDoing(playerNumber);
         for (int i = 0; i < players.Length; i++)
         {
@@ -33,6 +39,7 @@ public class CountingSheep : Puzzle {
     }
     private IEnumerator CreateSheep()
     {
+        GetComponent<AudioSource>().Play();
         for (int i = 0; i < players.Length; i++)
         {
             guess[i] = 0;
