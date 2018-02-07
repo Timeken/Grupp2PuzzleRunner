@@ -205,8 +205,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1708700911641590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21, y: 1.19, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 0.3, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4873444312155584}
   m_RootOrder: 0
@@ -298,12 +298,17 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1441904365251694}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 88.26597, y: 0.17, z: -3.9735053}
 =======
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 44.521786, y: -8.53, z: -3.9735053}
 >>>>>>> a6eb30531f2bfc8544cb0a6e70ddb297e6fb770c
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 46.41, y: 0.38529968, z: -3.9735053}
+>>>>>>> parent of a6eb305... MusicWorking
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4440343955218314}
@@ -363,8 +368,8 @@ MonoBehaviour:
   - {fileID: 1611056433282858}
   traficLight: {fileID: 212951496467473290}
   traficSprites:
-  - {fileID: 21300000, guid: b88cc4baf0ac9d740b70131c5ff52986, type: 3}
-  - {fileID: 21300002, guid: b88cc4baf0ac9d740b70131c5ff52986, type: 3}
+  - {fileID: 21300000, guid: 0cf31980ed31c6842a5d62785f49d53d, type: 3}
+  - {fileID: 21300000, guid: 2c3ee30cfa53158418f2b3ca3bbd48c9, type: 3}
 --- !u!212 &212015886994168248
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -619,7 +624,7 @@ SpriteRenderer:
   m_SortingLayerID: 1023253405
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: b88cc4baf0ac9d740b70131c5ff52986, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a672f167ea87dfa4893db1c99fa9f9fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
