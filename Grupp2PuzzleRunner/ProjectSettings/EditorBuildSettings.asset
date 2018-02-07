@@ -20,6 +20,3 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PreAlphaEarlyAcces.unity
     guid: edbc1234920893d4dbb9b2502c3a7c8c
-  - enabled: 1
-    path: Assets/Scenes/GameScene.unity
-    guid: 2a32bc5a1af91e6428d0ca8d5f855bb1
