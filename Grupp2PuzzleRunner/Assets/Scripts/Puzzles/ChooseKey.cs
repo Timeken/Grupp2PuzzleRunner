@@ -18,13 +18,17 @@ public class ChooseKey : Puzzle {
     [SerializeField]
     Sprite[] doorSprites;
 
+    [SerializeField]
+    private AudioClip lockSound;
+
     int CorrectKey;
     float[] cdTime;
     int[] arraySelection;
     float[] navigationTimer;
 
 	void Start () {
-		players = GameObject.FindObjectsOfType<Player> ();
+        GetComponent<AudioSource>().clip = lockSound;
+        players = GameObject.FindObjectsOfType<Player> ();
 		keys = new GameObject[2, keys1.Length];
 		CorrectKey = Random.Range (0, keys.GetLength (1));
         Debug.Log(CorrectKey);
@@ -39,8 +43,8 @@ public class ChooseKey : Puzzle {
 		}
 	}
 
-	protected override void StartPuzzle (int playerNumber) {
-		puzzleGraphics[playerNumber].SetActive (true);
+	protected override void StartPuzzle (int playerNumber) {        
+        puzzleGraphics[playerNumber].SetActive (true);
 	}
 	
 	
@@ -118,7 +122,8 @@ public class ChooseKey : Puzzle {
         }
     }
 	void Completed(int playerNumber) {
-		Debug.Log ("Player " + (playerNumber + 1) + " pressed the right key!");
+        GetComponent<AudioSource>().Play();
+        Debug.Log ("Player " + (playerNumber + 1) + " pressed the right key!");
         for (int i = 0; i < puzzleGraphics.Length; i++)
         {
             puzzleGraphics[i].SetActive(false);
