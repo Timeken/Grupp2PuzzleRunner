@@ -23,7 +23,7 @@ public class SceneChanger : MonoBehaviour {
 
     public void EarlyAccessBestAcess()
     {
-        SceneManager.LoadScene("PreAlphaEarlyAcces");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void LevelSelect()
