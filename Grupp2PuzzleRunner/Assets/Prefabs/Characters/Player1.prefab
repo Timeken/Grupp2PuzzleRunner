@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 50355206797124682}
   - component: {fileID: 114468306373729298}
   - component: {fileID: 114180515550494404}
+  - component: {fileID: 61963717071553214}
   m_Layer: 10
   m_Name: Player_Male (player 1)
   m_TagString: Player
@@ -136,7 +137,7 @@ GameObject:
   - component: {fileID: 61319074867703756}
   m_Layer: 10
   m_Name: Male
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,7 +397,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1058671009623914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.585273, y: 1.1360505, z: 4.0195312}
+  m_LocalPosition: {x: -11.585273, y: 1.1360505, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4006586803827584}
@@ -497,7 +498,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1510821115619386}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.537403, y: -1.27, z: -4.0195312}
+  m_LocalPosition: {x: 94.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4237270592095412}
@@ -626,7 +627,7 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.525
+    y: 0
     width: 1
     height: 0.475
   near clip plane: 0.3
@@ -637,7 +638,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294966783
+    m_Bits: 4294967039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -694,6 +695,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 10}
   m_EdgeRadius: 0
+--- !u!61 &61963717071553214
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1058671009623914}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2}
+  m_EdgeRadius: 0
 --- !u!81 &81832609298234030
 AudioListener:
   m_ObjectHideFlags: 1
@@ -736,7 +762,7 @@ MonoBehaviour:
   xButton: X
   yButton: Y
   PC: {fileID: 114468306373729298}
-  characterGrafics: {fileID: 1278885096027098}
+  characterGrafics: {fileID: 1296394440228616}
 --- !u!114 &114468306373729298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -750,6 +776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpeed: 5
   jumpSpeed: 300
+  hitbox: {fileID: 61319074867703756}
 --- !u!124 &124181184801329742
 Behaviour:
   m_ObjectHideFlags: 1
