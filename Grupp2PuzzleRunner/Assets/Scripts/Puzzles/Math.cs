@@ -29,12 +29,12 @@ public class Math : MonoBehaviour {
 			GUI.Label(new Rect(10, 10, 100, 30),"Wrong Answer!", g);
 		}
 	}
-	void OnTriggerEnter (Collider other)
+	void OnTriggerEnter2D (Collider2D other)
 	{
 		t = true;
 		myCanvas.enabled = true;
 	}
-	void OnTriggerExit ()
+	void OnTriggerExit2D ()
 	{
 		t = false;
 		b1 = false;
