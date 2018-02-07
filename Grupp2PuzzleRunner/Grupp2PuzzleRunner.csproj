@@ -298,21 +298,20 @@
     <Compile Include="Assets\Scripts\Character\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Character\Player.cs" />
     <Compile Include="Assets\Scripts\Character\PlayerControler.cs" />
+    <Compile Include="Assets\Scripts\Elevator.cs" />
     <Compile Include="Assets\Scripts\Objects\Sheep.cs" />
     <Compile Include="Assets\Scripts\Puzzles\ChooseKey.cs" />
     <Compile Include="Assets\Scripts\Puzzles\CountingSheep.cs" />
-    <Compile Include="Assets\Scripts\Puzzles\Math.cs" />
     <Compile Include="Assets\Scripts\Puzzles\OddOneOut.cs" />
-    <Compile Include="Assets\Scripts\Puzzles\OddOneOutMathVersion.cs" />
-    <Compile Include="Assets\Scripts\Puzzles\RightOrder.cs" />
     <Compile Include="Assets\Scripts\Puzzles\Stepmania.cs" />
     <Compile Include="Assets\Scripts\Puzzles\TraficLight.cs" />
     <Compile Include="Assets\Scripts\SceneChanger.cs" />
-    <Compile Include="Assets\Scripts\Shortcuts\Elevator.cs" />
     <Compile Include="Assets\Scripts\Shortcuts\GammalTant.cs" />
     <Compile Include="Assets\Scripts\Shortcuts\Taxi.cs" />
     <Compile Include="Assets\Scripts\Structure\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Structure\Math.cs" />
     <Compile Include="Assets\Scripts\Structure\Puzzle.cs" />
+    <Compile Include="Assets\Scripts\Structure\RightOrder.cs" />
     <Compile Include="Assets\Scripts\Structure\Shortcut.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
