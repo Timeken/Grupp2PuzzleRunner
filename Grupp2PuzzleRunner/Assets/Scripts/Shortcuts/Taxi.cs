@@ -8,13 +8,8 @@ public class Taxi : Shortcut {
     private float speed = 15, duration = 5;
     private float taxiX;
 
-    [SerializeField]
-    private AudioClip taxiSound;
-
     protected override void StartShortcut(int playerNumber)
     {
-        GetComponent<AudioSource>().clip = taxiSound;
-        GetComponent<AudioSource>().Play();
         StartCoroutine(AnimateTaxi(playerNumber));
     }
     private IEnumerator AnimateTaxi(int playerNumber)

@@ -294,15 +294,7 @@ GameObject:
   - component: {fileID: 50356150798506766}
   - component: {fileID: 114930950142600344}
   - component: {fileID: 114780822373286218}
-<<<<<<< HEAD
   - component: {fileID: 61023984780504316}
-=======
-<<<<<<< HEAD
-  - component: {fileID: 61023984780504316}
-=======
-  - component: {fileID: 61076025332633418}
->>>>>>> a6eb30531f2bfc8544cb0a6e70ddb297e6fb770c
->>>>>>> sound
   m_Layer: 10
   m_Name: Player_Female (player 2)
   m_TagString: Player
@@ -526,15 +518,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1210136078740122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
   m_LocalPosition: {x: 10, y: 5, z: 0}
-=======
-<<<<<<< HEAD
-  m_LocalPosition: {x: 10, y: 5, z: 0}
-=======
-  m_LocalPosition: {x: 14.41, y: 1.0365286, z: 0}
->>>>>>> a6eb30531f2bfc8544cb0a6e70ddb297e6fb770c
->>>>>>> sound
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4858682554555024}
@@ -710,15 +694,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8, y: 20}
   m_EdgeRadius: 0
-<<<<<<< HEAD
 --- !u!61 &61023984780504316
-=======
-<<<<<<< HEAD
---- !u!61 &61023984780504316
-=======
---- !u!61 &61076025332633418
->>>>>>> a6eb30531f2bfc8544cb0a6e70ddb297e6fb770c
->>>>>>> sound
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -730,15 +706,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-<<<<<<< HEAD
   m_Offset: {x: 0, y: 0.2}
-=======
-<<<<<<< HEAD
-  m_Offset: {x: 0, y: 0.2}
-=======
-  m_Offset: {x: 0.7, y: 0.2}
->>>>>>> a6eb30531f2bfc8544cb0a6e70ddb297e6fb770c
->>>>>>> sound
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
